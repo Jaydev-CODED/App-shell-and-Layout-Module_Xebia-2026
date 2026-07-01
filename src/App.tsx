@@ -1,80 +1,123 @@
+import {
+  Card,
+  Badge,
+  Avatar,
+  EmptyState,
+  ErrorState,
+  Table,
+} from "./components";
+
+import xebiaLogo from "./assets/xebia-logo.png";
 import "./App.css";
 
-import Button from "./components/ui/Button";
-import Input from "./components/ui/Input";
-import Textarea from "./components/ui/Textarea";
-import Select from "./components/ui/Select";
-import Checkbox from "./components/ui/Checkbox";
-import Radio from "./components/ui/Radio";
-import Switch from "./components/ui/Switch";
-
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(true);
+
   return (
-      <div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    padding: "40px",
-  }}
->
-  <div
-    style={{
-      width: "100%",
-      maxWidth: "650px",
-      background: "#ffffff",
-      padding: "40px",
-      borderRadius: "12px",
-      boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-    }}
-  >
-        <h1>Design System Demo</h1>
+    <main className="app">
+      <img
+        src={xebiaLogo}
+        alt="Xebia Logo"
+        className="logo"
+      />
 
-        <Input
-          label="Username"
-          placeholder="Enter username"
+      <h1>University Dashboard Design System</h1>
+
+      <p className="subtitle">
+        Reusable UI Components built for the University Dashboard.
+      </p>
+
+      <section className="demo-section">
+        <h2>📦 Card</h2>
+
+        <Card
+          title="Student Dashboard"
+          subtitle="University Management System"
+        >
+          Welcome to the University Dashboard Design System 🚀
+        </Card>
+      </section>
+
+      <section className="demo-section">
+        <h2>🏷️ Badge</h2>
+
+        <div className="demo-row">
+          <Badge variant="success">Active</Badge>
+          <Badge variant="warning">Pending</Badge>
+          <Badge variant="danger">Failed</Badge>
+          <Badge variant="info">New</Badge>
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <h2>👤 Avatar</h2>
+
+        <div className="demo-row">
+          <Avatar initials="SS" size="sm" />
+          <Avatar initials="SS" size="md" />
+          <Avatar initials="SS" size="lg" />
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <h2>📂 Empty State</h2>
+
+        <EmptyState
+          title="No Students Found"
+          description="There are currently no students in the system."
         />
+      </section>
 
-        <Input
-          label="Password"
-          type="password"
-          placeholder="Enter password"
+      <section className="demo-section">
+        <h2>⚠️ Error State</h2>
+
+        <ErrorState
+          title="Something went wrong"
+          description="Unable to load student records."
+          action={
+            <button className="demo-button">
+              Retry
+            </button>
+          }
         />
+      </section>
 
-        <Textarea
-          label="Message"
-          placeholder="Write your message..."
-        />
+      <section className="demo-section">
+        <h2>📋 Table</h2>
 
-        <Select
-          label="Department"
-          options={[
-            "Computer Science",
-            "Mechanical",
-            "Civil",
-            "Electrical",
+        <Table
+          columns={["Name", "Email", "Role"]}
+          data={[
+            [
+              "John Doe",
+              "john@example.com",
+              <Badge variant="success">Student</Badge>,
+            ],
+            [
+              "Jane Smith",
+              "jane@example.com",
+              <Badge variant="warning">Faculty</Badge>,
+            ],
+            [
+              "Alex Brown",
+              "alex@example.com",
+              <Badge variant="info">Admin</Badge>,
+            ],
           ]}
         />
+      </section>
 
-        <Checkbox
-          label="I agree to the Terms & Conditions"
-        />
-
-        <Radio
-          label="Gender"
-          options={[
-            "Male",
-            "Female",
-            "Other",
-          ]}
-        />
-
-        <Switch
-          label="Enable Notifications"
-        />
-
-        <Button>Submit</Button>
-      </div>
-    </div>
+      <footer
+        style={{
+          marginTop: "4rem",
+          textAlign: "center",
+          color: "var(--color-text-muted)",
+        }}
+      >
+        University Dashboard Design System • Reusable Components
+      </footer>
+    </main>
   );
 }
 
