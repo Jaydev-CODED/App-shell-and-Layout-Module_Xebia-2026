@@ -1,0 +1,29 @@
+.tabsContainer {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #e5e7eb;
+  font-weight: 500;
+}
+
+.active {
+  background: #2563eb;
+  color: white;
+}
+
+.content {
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}

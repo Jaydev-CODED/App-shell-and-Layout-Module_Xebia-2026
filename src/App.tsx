@@ -10,6 +10,9 @@ import {
 import "./App.css";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(true);
+
   return (
     <main className="app">
       <h1>University Dashboard Design System</h1>
