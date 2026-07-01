@@ -7,6 +7,8 @@ export function Modal({
   title,
   children,
   onClose,
+  footer,
+  className = "",
 }: ModalProps) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -15,12 +17,16 @@ export function Modal({
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", handleEscape);
+    }
 
     return () => {
+      document.body.style.overflow = "";
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [onClose]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -28,24 +34,39 @@ export function Modal({
     <div
       className={styles.overlay}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? "modal-title" : undefined}
     >
       <div
-        className={styles.modal}
+        className={`${styles.modal} ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          className={styles.closeButton}
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-          ×
-        </button>
-
-        {title && <h2>{title}</h2>}
+        <div className={styles.header}>
+          {title ? (
+            <h3 id="modal-title" className="font-headline-sm text-headline-sm">
+              {title}
+            </h3>
+          ) : (
+            <div />
+          )}
+          <button
+            type="button"
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="Close modal"
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              close
+            </span>
+          </button>
+        </div>
 
         <div className={styles.content}>
           {children}
         </div>
+
+        {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>
   );

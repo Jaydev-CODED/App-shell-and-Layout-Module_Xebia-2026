@@ -1,0 +1,99 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.triggerWrapper {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-surface-variant);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-1) 0;
+  z-index: 50;
+  min-width: 180px;
+  animation: popoverFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.item {
+  width: 100%;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  color: var(--color-on-background);
+  text-align: left;
+  outline: none;
+  font-family: var(--font-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.item:hover {
+  background-color: var(--color-surface-container-low);
+  color: var(--color-primary-hover);
+}
+
+.item:focus-visible {
+  background-color: var(--color-surface-container);
+  color: var(--color-primary);
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--color-on-surface-variant);
+  flex-shrink: 0;
+}
+
+.item:hover .icon {
+  color: var(--color-primary-hover);
+}
+
+.destructive {
+  color: var(--color-error);
+}
+
+.destructive:hover {
+  background-color: rgba(229, 72, 77, 0.08);
+  color: var(--color-error);
+}
+
+.destructive .icon {
+  color: var(--color-error);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-surface-variant);
+  margin: var(--space-1) 0;
+}
+
+@keyframes popoverFade {
+  from {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

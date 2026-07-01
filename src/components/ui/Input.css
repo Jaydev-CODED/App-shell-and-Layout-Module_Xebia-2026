@@ -1,0 +1,137 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.input-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-surface-card);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  color: var(--color-on-surface);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--color-outline-variant);
+}
+
+/* Icons styling */
+.input-icon-left {
+  position: absolute;
+  left: 12px;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  pointer-events: none;
+  font-size: 20px;
+}
+
+.input-icon-right {
+  position: absolute;
+  right: 12px;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.input-password-toggle {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-password-toggle:hover {
+  background-color: var(--color-surface-container);
+  color: var(--color-primary-container);
+}
+
+.input-has-left {
+  padding-left: 40px;
+}
+
+.input-has-right {
+  padding-right: 40px;
+}
+
+/* Focus State */
+.input:focus {
+  border-color: var(--color-primary-container);
+  box-shadow: 0 0 0 2px rgba(92, 29, 103, 0.2);
+}
+
+/* Focus color on labels */
+.input-group:focus-within:not(.input-group-disabled):not(.input-group-error) .input-label {
+  color: var(--color-primary-container);
+}
+
+/* Focus color on icons */
+.input-group:focus-within:not(.input-group-disabled) .input-icon-left,
+.input-group:focus-within:not(.input-group-disabled) .input-password-toggle {
+  color: var(--color-primary-container);
+}
+
+/* Error State */
+.input-group-error .input-label {
+  color: var(--color-error);
+}
+
+.input-group-error .input {
+  border-color: var(--color-error);
+  background-color: rgba(229, 72, 77, 0.03);
+}
+
+.input-group-error .input:focus {
+  box-shadow: 0 0 0 2px rgba(229, 72, 77, 0.2);
+}
+
+.input-error-text {
+  color: var(--color-error);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+/* Disabled State */
+.input-group-disabled .input-label {
+  color: var(--color-outline-variant);
+}
+
+.input:disabled {
+  background-color: var(--color-surface-container-low);
+  border-color: var(--color-surface-variant);
+  color: var(--color-outline-variant);
+  cursor: not-allowed;
+}
+
+.input-helper-text {
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}

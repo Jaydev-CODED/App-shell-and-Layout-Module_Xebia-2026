@@ -1,38 +1,74 @@
 .card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-surface-card);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Card elevations */
+.card-flat {
+  box-shadow: none;
+}
+
+.card-raised {
   box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
 }
 
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
+.card-raised:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
+/* Glassmorphism card style */
+.card-glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(233, 233, 236, 0.5);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-glass:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Subclass Layouts */
 .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: var(--space-4);
+  gap: var(--space-4);
+}
+
+.card-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
 .card-title {
-  color: var(--color-text);
-  font-size: 1.2rem;
-  font-weight: 600;
+  color: var(--color-on-background);
+  font-weight: 700;
 }
 
 .card-subtitle {
-  margin-top: var(--space-1);
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.card-header-action {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .card-content {
-  color: var(--color-text);
-  line-height: 1.6;
+  color: var(--color-on-background);
+  line-height: 1.5;
+  flex-grow: 1;
 }

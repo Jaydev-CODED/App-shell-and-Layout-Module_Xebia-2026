@@ -1,20 +1,33 @@
 .skeleton {
-  border-radius: 8px;
-  background: linear-gradient(
+  display: block;
+  background-color: var(--color-surface-container-highest);
+  background-image: linear-gradient(
     90deg,
-    #e5e7eb 25%,
-    #f3f4f6 50%,
-    #e5e7eb 75%
+    var(--color-surface-container-highest) 25%,
+    var(--color-surface-container) 50%,
+    var(--color-surface-container-highest) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.text {
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+}
+
+.rect {
+  border-radius: var(--radius-md);
+}
+
+.circle {
+  border-radius: var(--radius-full);
 }
 
 @keyframes shimmer {
   from {
     background-position: 200% 0;
   }
-
   to {
     background-position: -200% 0;
   }

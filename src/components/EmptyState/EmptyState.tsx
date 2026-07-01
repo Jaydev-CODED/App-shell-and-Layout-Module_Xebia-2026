@@ -1,11 +1,12 @@
+import React from "react";
 import "./EmptyState.css";
-import type { ReactNode } from "react";
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   title: string;
   description: string;
-  icon?: ReactNode;
-  action?: ReactNode;
+  icon?: React.ReactNode;
+  action?: React.ReactNode;
+  className?: string;
 }
 
 export default function EmptyState({
@@ -13,22 +14,23 @@ export default function EmptyState({
   description,
   icon,
   action,
+  className = "",
 }: EmptyStateProps) {
   return (
-    <div className="empty-state">
-      <div className="empty-icon">
-        {icon ?? "📂"}
+    <div className={`empty-state level-1-card ${className}`}>
+      <div className="empty-icon-container">
+        {icon ?? (
+          <span className="material-symbols-outlined text-outline text-5xl" aria-hidden="true">
+            search_off
+          </span>
+        )}
       </div>
 
-      <h2>{title}</h2>
+      <h4 className="empty-title font-headline-sm text-headline-sm">{title}</h4>
 
-      <p>{description}</p>
+      <p className="empty-description font-body-md text-body-md">{description}</p>
 
-      {action && (
-        <div className="empty-action">
-          {action}
-        </div>
-      )}
+      {action && <div className="empty-action">{action}</div>}
     </div>
   );
 }

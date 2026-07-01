@@ -1,44 +1,55 @@
 export const colorPalette = {
   neutral: {
     50: "#FFFFFF",
-    100: "#F7F7FB",
-    200: "#EDEDED",
-    300: "#DADCEA",
-    400: "#B8AFCF",
-    500: "#9D92B2",
-    600: "#855889",
-    700: "#793B74",
-    800: "#5B1E53",
-    900: "#4A1E47",
+    100: "#f9f9fc",
+    200: "#f3f3f6",
+    300: "#eeedf0",
+    400: "#e8e8eb",
+    500: "#e2e2e5",
+    600: "#dadadd",
+    700: "#80737f",
+    800: "#4e434e",
+    900: "#1a1c1e",
   },
-
   brand: {
-    100: "#D3CCEC",
-    200: "#B8AFCF",
-    300: "#9D92B2",
-    400: "#855889",
-    500: "#6C1D5F",
-    600: "#5B1E53",
-    700: "#4A1E47",
+    primary: "#43004f",
+    primaryContainer: "#5c1d67",
+    primaryHover: "#4A164F",
+    secondary: "#9a2e9d",
+    secondaryContainer: "#fc87fb",
+    onPrimary: "#ffffff",
+    onSecondary: "#ffffff",
+    onPrimaryContainer: "#d289d9",
+    onSecondaryContainer: "#7b0682",
   },
-
   accent: {
-    500: "#84117C",
+    tertiary: "#421600",
+    tertiaryContainer: "#652600",
+    onTertiary: "#ffffff",
+    onTertiaryContainer: "#ff7f39",
   },
-
   semantic: {
-    success: "#01AC9F",
-    warning: "#FF6200",
-    danger: "#D32F2F",
-    info: "#6C1D5F",
+    success: "#12A89D",
+    warning: "#FFB020",
+    danger: "#E5484D",
+    info: "#3b82f6",
   },
+  charts: {
+    chart1: "#6C3FA1",
+    chart2: "#7D4AB4",
+    chart3: "#8B5CC7",
+    chart4: "#9A74D6",
+    chart5: "#B39CE3",
+    chart6: "#D3C7F2",
+  }
 } as const;
-
 
 export const typography = {
   fontFamily: {
     sans: 'Inter, "Segoe UI", Roboto, sans-serif',
     mono: '"JetBrains Mono", "SFMono-Regular", monospace',
+    display: '"Space Grotesk", sans-serif',
+    headline: '"Times New Roman", Times, serif',
   },
   fontSize: {
     xs: "0.75rem",
@@ -75,20 +86,27 @@ export const spacing = {
   10: "2.5rem",
   12: "3rem",
   16: "4rem",
+  base: "8px",
+  gutter: "24px",
+  marginDesktop: "40px",
+  marginMobile: "16px",
+  containerMax: "1440px",
 } as const;
 
 export const radius = {
-  sm: "0.375rem",
+  sm: "0.25rem",
   md: "0.5rem",
   lg: "0.75rem",
   xl: "1rem",
-  pill: "999px",
+  xl2: "1.5rem",
+  pill: "9999px",
 } as const;
 
 export const shadows = {
-  sm: "0 2px 6px rgba(74, 30, 71, 0.08)",
-md: "0 8px 24px rgba(74, 30, 71, 0.12)",
-lg: "0 16px 40px rgba(74, 30, 71, 0.18)",
+  sm: "0 2px 6px rgba(74, 30, 71, 0.05)",
+  md: "0 4px 12px rgba(0, 0, 0, 0.05)",
+  lg: "0 8px 32px rgba(0, 0, 0, 0.08)",
+  inner: "inset 0 2px 4px rgba(0, 0, 0, 0.06)",
 } as const;
 
 export const breakpoints = {
