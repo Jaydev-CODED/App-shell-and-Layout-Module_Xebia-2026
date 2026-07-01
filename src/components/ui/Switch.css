@@ -2,11 +2,19 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  cursor: pointer;
   margin-bottom: 20px;
+  color: #5A5A5A;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .switch-container input {
-  width: 40px;
-  height: 20px;
+  width: 42px;
+  height: 22px;
+  accent-color: #6C1D5F;
+  cursor: pointer;
+}
+
+.switch-container input:disabled {
+  accent-color: #DEDEDE;
 }

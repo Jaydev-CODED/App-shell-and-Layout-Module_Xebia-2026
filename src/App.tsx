@@ -1,3 +1,5 @@
+import "./App.css";
+
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import Textarea from "./components/ui/Textarea";
@@ -8,64 +10,70 @@ import Switch from "./components/ui/Switch";
 
 function App() {
   return (
-    <div
-      style={{
-        padding: "40px",
-        maxWidth: "600px",
-        margin: "auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
-    >
-      <h1>🎨 Design System Demo</h1>
+      <div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    padding: "40px",
+  }}
+>
+  <div
+    style={{
+      width: "100%",
+      maxWidth: "650px",
+      background: "#ffffff",
+      padding: "40px",
+      borderRadius: "12px",
+      boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+    }}
+  >
+        <h1>Design System Demo</h1>
 
-      <Input
-        label="Username"
-        placeholder="Enter username"
-      />
+        <Input
+          label="Username"
+          placeholder="Enter username"
+        />
 
-      <Input
-        label="Password"
-        type="password"
-        placeholder="Enter password"
-      />
+        <Input
+          label="Password"
+          type="password"
+          placeholder="Enter password"
+        />
 
-      <Textarea
-        label="Message"
-        placeholder="Write your message..."
-      />
+        <Textarea
+          label="Message"
+          placeholder="Write your message..."
+        />
 
-      <Select
-        label="Department"
-        options={[
-          "Computer Science",
-          "Mechanical",
-          "Civil",
-          "Electrical",
-        ]}
-      />
+        <Select
+          label="Department"
+          options={[
+            "Computer Science",
+            "Mechanical",
+            "Civil",
+            "Electrical",
+          ]}
+        />
 
-      <Checkbox
-        label="I agree to the Terms & Conditions"
-      />
+        <Checkbox
+          label="I agree to the Terms & Conditions"
+        />
 
-      <Radio
-        label="Gender"
-        options={[
-          "Male",
-          "Female",
-          "Other",
-        ]}
-      />
+        <Radio
+          label="Gender"
+          options={[
+            "Male",
+            "Female",
+            "Other",
+          ]}
+        />
 
-      <Switch
-        label="Enable Notifications"
-      />
+        <Switch
+          label="Enable Notifications"
+        />
 
-      <Button>
-        Submit
-      </Button>
+        <Button>Submit</Button>
+      </div>
     </div>
   );
 }

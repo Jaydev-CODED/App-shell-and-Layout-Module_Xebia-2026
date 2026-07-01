@@ -6,17 +6,24 @@
 }
 
 .select-group label {
+  color: #5A5A5A;
   font-weight: 600;
 }
 
 .select {
-  padding: 10px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #DEDEDE;
   border-radius: 8px;
-  font-size: 16px;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .select:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #6C1D5F;
+  box-shadow: 0 0 0 3px rgba(108,29,95,.15);
 }
