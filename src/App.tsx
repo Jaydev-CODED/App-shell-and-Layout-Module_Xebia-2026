@@ -1,79 +1,98 @@
-import "./App.css";
 import {
-  breakpoints,
-  colorPalette,
-  radius,
-  shadows,
-  spacing,
-  typography,
-} from "./styles";
+  Card,
+  Badge,
+  Avatar,
+  EmptyState,
+  ErrorState,
+  Table,
+} from "./components";
 
-const tokenSections = [
-  {
-    title: "Color Palette",
-    items: [
-      { label: "Neutral 900", value: colorPalette.neutral[900] },
-      { label: "Brand 500", value: colorPalette.brand[500] },
-      { label: "Accent 500", value: colorPalette.accent[500] },
-      { label: "Success", value: colorPalette.semantic.success },
-    ],
-  },
-  {
-    title: "Typography",
-    items: [
-      { label: "Sans", value: typography.fontFamily.sans },
-      { label: "Mono", value: typography.fontFamily.mono },
-      { label: "Base Size", value: typography.fontSize.base },
-      { label: "Heading Size", value: typography.fontSize["3xl"] },
-    ],
-  },
-  {
-    title: "Spacing & Radius",
-    items: [
-      { label: "Space 4", value: spacing[4] },
-      { label: "Space 8", value: spacing[8] },
-      { label: "Radius MD", value: radius.md },
-      { label: "Radius XL", value: radius.xl },
-    ],
-  },
-  {
-    title: "Shadows & Breakpoints",
-    items: [
-      { label: "Shadow MD", value: shadows.md },
-      { label: "Breakpoint MD", value: breakpoints.md },
-      { label: "Breakpoint LG", value: breakpoints.lg },
-    ],
-  },
-] as const;
+import "./App.css";
 
 function App() {
   return (
-    <main className="app-shell">
-      <section className="hero-panel surface-card">
-        <div className="hero-content">
-          <p className="eyebrow">Design System Foundation</p>
-          <h1>University Dashboard UI Theme</h1>
-          <p className="hero-copy">
-            Shared tokens, global styles, and utility classes are now available
-            for the component team to build on.
-          </p>
+    <main className="app">
+      <h1>University Dashboard Design System</h1>
+
+      <p className="subtitle">
+        Reusable UI Components built for the University Dashboard.
+      </p>
+
+      <section className="demo-section">
+        <h2>📦 Card</h2>
+
+        <Card
+          title="Student Dashboard"
+          subtitle="University Management System"
+        >
+          Welcome to the University Dashboard Design System 🚀
+        </Card>
+      </section>
+
+      <section className="demo-section">
+        <h2>🏷️ Badge</h2>
+
+        <div className="demo-row">
+          <Badge variant="success">Active</Badge>
+          <Badge variant="warning">Pending</Badge>
+          <Badge variant="danger">Failed</Badge>
+          <Badge variant="info">New</Badge>
         </div>
       </section>
 
-      <section className="token-grid grid-responsive">
-        {tokenSections.map((section) => (
-          <article key={section.title} className="surface-card panel">
-            <h2>{section.title}</h2>
-            <div className="stack-sm">
-              {section.items.map((item) => (
-                <div key={item.label} className="token-row">
-                  <span>{item.label}</span>
-                  <code>{item.value}</code>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
+      <section className="demo-section">
+        <h2>👤 Avatar</h2>
+
+        <div className="demo-row">
+          <Avatar initials="SS" size="sm" />
+          <Avatar initials="SS" size="md" />
+          <Avatar initials="SS" size="lg" />
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <h2>📂 Empty State</h2>
+
+        <EmptyState
+          title="No Students Found"
+          description="There are currently no students in the system."
+        />
+      </section>
+
+      <section className="demo-section">
+        <h2>⚠️ Error State</h2>
+
+        <ErrorState
+          title="Something went wrong"
+          description="Unable to load student records."
+          action={
+            <button className="demo-button">
+              Retry
+            </button>
+          }
+        />
+      </section>
+
+      <section className="demo-section">
+        <h2>📋 Table</h2>
+
+        <Table
+          columns={["Name", "Email", "Role"]}
+          data={[
+            ["John Doe", "john@example.com", <Badge variant="success">Student</Badge>],
+            ["Jane Smith", "jane@example.com", <Badge variant="warning">Faculty</Badge>],
+            ["Alex Brown", "alex@example.com", <Badge variant="info">Admin</Badge>],
+          ]}
+        />
+        <footer
+  style={{
+    marginTop: "4rem",
+    textAlign: "center",
+    color: "var(--color-text-muted)",
+  }}
+>
+  University Dashboard Design System • Reusable Components
+</footer>
       </section>
     </main>
   );
