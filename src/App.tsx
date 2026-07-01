@@ -7,6 +7,7 @@ import {
   Table,
 } from "./components";
 
+import xebiaLogo from "./assets/xebia-logo.png";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,12 @@ function App() {
 
   return (
     <main className="app">
+      <img
+        src={xebiaLogo}
+        alt="Xebia Logo"
+        className="logo"
+      />
+
       <h1>University Dashboard Design System</h1>
 
       <p className="subtitle">
@@ -82,21 +89,34 @@ function App() {
         <Table
           columns={["Name", "Email", "Role"]}
           data={[
-            ["John Doe", "john@example.com", <Badge variant="success">Student</Badge>],
-            ["Jane Smith", "jane@example.com", <Badge variant="warning">Faculty</Badge>],
-            ["Alex Brown", "alex@example.com", <Badge variant="info">Admin</Badge>],
+            [
+              "John Doe",
+              "john@example.com",
+              <Badge variant="success">Student</Badge>,
+            ],
+            [
+              "Jane Smith",
+              "jane@example.com",
+              <Badge variant="warning">Faculty</Badge>,
+            ],
+            [
+              "Alex Brown",
+              "alex@example.com",
+              <Badge variant="info">Admin</Badge>,
+            ],
           ]}
         />
-        <footer
-  style={{
-    marginTop: "4rem",
-    textAlign: "center",
-    color: "var(--color-text-muted)",
-  }}
->
-  University Dashboard Design System • Reusable Components
-</footer>
       </section>
+
+      <footer
+        style={{
+          marginTop: "4rem",
+          textAlign: "center",
+          color: "var(--color-text-muted)",
+        }}
+      >
+        University Dashboard Design System • Reusable Components
+      </footer>
     </main>
   );
 }

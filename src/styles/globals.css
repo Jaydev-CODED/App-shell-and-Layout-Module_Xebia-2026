@@ -10,19 +10,19 @@
   background-color: #f8fafc;
   color: #0f172a;
 
-  --color-bg: #f8fafc;
+  --color-bg: #F7F7FB;
   --color-surface: #ffffff;
   --color-surface-muted: #f1f5f9;
   --color-text: #0f172a;
   --color-text-muted: #475569;
-  --color-border: #e2e8f0;
-  --color-brand: #2563eb;
-  --color-brand-strong: #1d4ed8;
-  --color-accent: #3b82f6;
+  --color-border: #DADCEA;
+  --color-brand: #6C1D5F;
+  --color-brand-strong: #4A1E47;
+  --color-accent: #84117C;
   --color-success: #16a34a;
   --color-warning: #d97706;
   --color-danger: #dc2626;
-  --color-info: #2563eb;
+  --color-info: #6C1D5F;
 
   --font-sans: Inter, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
@@ -45,7 +45,7 @@
   --radius-pill: 999px;
 
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --shadow-md: 0 10px 30px rgba(74,30,71,.15);
   --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.16);
 
   --breakpoint-sm: 640px;

@@ -1,33 +1,39 @@
 export const colorPalette = {
   neutral: {
-    50: "#f8fafc",
-    100: "#f1f5f9",
-    200: "#e2e8f0",
-    300: "#cbd5e1",
-    400: "#94a3b8",
-    500: "#64748b",
-    600: "#475569",
-    700: "#334155",
-    800: "#1e293b",
-    900: "#0f172a",
+    50: "#FFFFFF",
+    100: "#F7F7FB",
+    200: "#EDEDED",
+    300: "#DADCEA",
+    400: "#B8AFCF",
+    500: "#9D92B2",
+    600: "#855889",
+    700: "#793B74",
+    800: "#5B1E53",
+    900: "#4A1E47",
   },
+
   brand: {
-    500: "#2563eb",
-    600: "#1d4ed8",
-    700: "#1e40af",
+    100: "#D3CCEC",
+    200: "#B8AFCF",
+    300: "#9D92B2",
+    400: "#855889",
+    500: "#6C1D5F",
+    600: "#5B1E53",
+    700: "#4A1E47",
   },
+
   accent: {
-    50: "#eff6ff",
-    100: "#dbeafe",
-    500: "#3b82f6",
+    500: "#84117C",
   },
+
   semantic: {
-    success: "#16a34a",
-    warning: "#d97706",
-    danger: "#dc2626",
-    info: "#2563eb",
+    success: "#01AC9F",
+    warning: "#FF6200",
+    danger: "#D32F2F",
+    info: "#6C1D5F",
   },
 } as const;
+
 
 export const typography = {
   fontFamily: {
@@ -80,9 +86,9 @@ export const radius = {
 } as const;
 
 export const shadows = {
-  sm: "0 1px 2px rgba(15, 23, 42, 0.06)",
-  md: "0 8px 24px rgba(15, 23, 42, 0.12)",
-  lg: "0 16px 40px rgba(15, 23, 42, 0.16)",
+  sm: "0 2px 6px rgba(74, 30, 71, 0.08)",
+md: "0 8px 24px rgba(74, 30, 71, 0.12)",
+lg: "0 16px 40px rgba(74, 30, 71, 0.18)",
 } as const;
 
 export const breakpoints = {
