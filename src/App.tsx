@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal } from "./components/ui/overlay/Modal";
 import { Toast } from "./components/ui/overlay/Toast";
 import { Tabs } from "./components/ui/Tabs";
+import { Skeleton } from "./components/ui/feedback/Skeleton";
 import "./App.css";
 import {
   breakpoints,
@@ -104,6 +105,13 @@ function App() {
   />
 )}
 <Tabs tabs={demoTabs} />
+<div style={{ margin: "20px 0" }}>
+  <Skeleton width="300px" height="20px" />
+  <br />
+  <Skeleton width="250px" height="20px" />
+  <br />
+  <Skeleton width="350px" height="20px" />
+</div>
 
       <section className="token-grid grid-responsive">
         {tokenSections.map((section) => (
