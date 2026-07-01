@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Modal } from "./components/ui/overlay/Modal";
 import { Toast } from "./components/ui/overlay/Toast";
 import { Tabs } from "./components/ui/Tabs";
-import { Skeleton } from "./components/ui/feedback/Skeleton";
-import "./App.css";
-import {
+import { Skeleton } from "./components/ui/feedback/Skeleton";import {
   breakpoints,
   colorPalette,
   radius,
