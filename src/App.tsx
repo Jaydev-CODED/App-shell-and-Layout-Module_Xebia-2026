@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { Modal } from "./components/ui/overlay/Modal";
+import { Toast } from "./components/ui/overlay/Toast";
+import { Tabs } from "./components/ui/Tabs";
 import "./App.css";
 import {
   breakpoints,
@@ -45,8 +49,28 @@ const tokenSections = [
     ],
   },
 ] as const;
+const demoTabs = [
+  {
+    id: "overview",
+    label: "Overview",
+    content: <p>Overview Content</p>,
+  },
+  {
+    id: "students",
+    label: "Students",
+    content: <p>Students Content</p>,
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    content: <p>Settings Content</p>,
+  },
+];
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(true);
+
   return (
     <main className="app-shell">
       <section className="hero-panel surface-card">
@@ -60,10 +84,32 @@ function App() {
         </div>
       </section>
 
+      <button onClick={() => setIsModalOpen(true)}>
+        Open Modal
+      </button>
+
+      <Modal
+        isOpen={isModalOpen}
+        title="Test Modal"
+        onClose={() => setIsModalOpen(false)}
+      >
+        <p>Hello Aditya 👋</p>
+      </Modal>
+      {showToast && (
+  <Toast
+    message="Data saved successfully!"
+    type="success"
+    duration={3000}
+    onClose={() => setShowToast(false)}
+  />
+)}
+<Tabs tabs={demoTabs} />
+
       <section className="token-grid grid-responsive">
         {tokenSections.map((section) => (
           <article key={section.title} className="surface-card panel">
             <h2>{section.title}</h2>
+
             <div className="stack-sm">
               {section.items.map((item) => (
                 <div key={item.label} className="token-row">
