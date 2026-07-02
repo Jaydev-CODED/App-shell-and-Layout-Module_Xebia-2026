@@ -1,38 +1,41 @@
-# Audit Log Portal
+# UMS Portal: Audit Logs (Stitch Velvet Edition)
 
-This is the front-end interface for the University Management System (UMS) Audit Log Portal, featuring a complete "Stitch Velvet" design system overhaul.
+A modern, responsive React + TypeScript application built with Vite and Tailwind CSS v4, featuring the "Stitch Velvet" design system.
 
-## How to Run the Project Locally
+## 🚀 Getting Started
 
-If you have just cloned or downloaded this repository, follow these steps to get the app running on your computer:
+If you have just cloned this repository to your laptop, follow these instructions to get the app running locally!
 
-### 1. Prerequisites
-You must have **Node.js** installed on your computer. 
-* If you don't have it, download and install it from the official website: [https://nodejs.org/](https://nodejs.org/) (The "LTS" version is recommended).
+### Prerequisites
 
-### 2. Install Dependencies
-Open your terminal (Command Prompt, PowerShell, or Mac Terminal), navigate into the `audit-log-portal` folder, and run:
-```bash
-npm install
-```
-This will download all the necessary packages (like React, Tailwind CSS, etc.) required to run the project.
+You need to have **Node.js** installed on your computer. 
+If you don't have it, download and install it from here: [https://nodejs.org/en](https://nodejs.org/en) (the LTS version is recommended).
 
-### 3. Start the Development Server
-Once the installation is complete, start the app by running:
-```bash
-npm run dev
-```
+### Installation & Running
 
-### 4. View the App
-The terminal will display a local URL (usually `http://localhost:5173`). 
-* Cmd+Click (Mac) or Ctrl+Click (Windows) the link, or copy and paste it into your browser to view the app!
+1. **Open your terminal** and navigate into the project folder:
+   ```bash
+   cd audit-log-portal
+   ```
+
+2. **Install the dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **View the app**:
+   Open your browser and navigate to the URL provided in your terminal (usually `http://localhost:5173/`).
 
 ---
 
-## Features Built
-* **Dynamic Routing**: Full React-Router implementation across 5 distinct views.
-* **Audit Trail**: Main data grid for tracking all system events.
-* **Activity Timeline**: Chronological tracking of specific entity events.
-* **Compliance Reports**: Mock report generation and history tracking.
-* **Export Logs**: Configurable file format exports with mock downloads.
-* **Tailwind v4 Integration**: Custom color palette variables and modern utility configurations.
+### Features Included
+- **Main Audit Trail:** Filterable mock data table with pagination.
+- **Detailed Event View:** Deep dive into specific events with side-by-side data diffs.
+- **Export Logs:** Configuration UI for generating CSV/PDF/JSON exports.
+- **Compliance Reports:** Scheduled and on-demand report mockups.
+- **Activity Timeline:** Chronological timeline view of entity-specific activities.
