@@ -7,18 +7,21 @@ export function DashboardShell() {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="flex min-h-screen flex-col lg:flex-row">
-        <div className={collapsed ? 'w-full lg:w-20' : 'w-full lg:w-72'}>
-          <AppSidebar collapsed={collapsed} onToggle={() => setCollapsed((value) => !value)} />
+    <div className="min-h-screen" style={{ background: '#f9f9fc' }}>
+      <div className="flex min-h-screen">
+        {/* Fixed Sidebar */}
+        <div
+          className="hidden lg:flex flex-col shrink-0 sticky top-0 h-screen"
+          style={{ width: collapsed ? '72px' : '240px', transition: 'width 200ms ease' }}
+        >
+          <AppSidebar collapsed={collapsed} onToggle={() => setCollapsed((v) => !v)} />
         </div>
 
-        <div className="flex min-h-screen flex-1 flex-col">
+        {/* Main Content Area */}
+        <div className="flex flex-1 flex-col min-h-screen min-w-0">
           <TopNavbar />
-          <main className="flex-1 p-3 sm:p-6 lg:p-8">
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-              <Outlet />
-            </div>
+          <main className="flex-1 p-6 lg:p-8" style={{ maxWidth: '1440px', width: '100%' }}>
+            <Outlet />
           </main>
         </div>
       </div>

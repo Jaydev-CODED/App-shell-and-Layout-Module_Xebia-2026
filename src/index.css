@@ -1,11 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, 'Segoe UI', sans-serif;
+  /* ── Primary ── */
+  --color-primary: #43004f;
+  --color-primary-container: #5c1d67;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #d289d9;
+  --color-inverse-primary: #f8acff;
+  --color-primary-hover: #4a164f;
+
+  /* ── Secondary ── */
+  --color-secondary: #9a2e9d;
+  --color-secondary-container: #fc87fb;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #7b0682;
+
+  /* ── Tertiary ── */
+  --color-tertiary: #421600;
+  --color-tertiary-container: #652600;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #ff7f39;
+
+  /* ── Surface ── */
+  --color-surface: #f9f9fc;
+  --color-surface-dim: #dadadd;
+  --color-surface-bright: #f9f9fc;
+  --color-surface-lowest: #ffffff;
+  --color-surface-low: #f3f3f6;
+  --color-surface: #eeedf0;
+  --color-surface-high: #e8e8eb;
+  --color-surface-highest: #e2e2e5;
+  --color-surface-card: #e9e9ec;
+  --color-background: #ffffff;
+
+  /* ── On-Surface ── */
+  --color-on-surface: #1a1c1e;
+  --color-on-surface-variant: #4e434e;
+  --color-inverse-surface: #2f3033;
+  --color-inverse-on-surface: #f0f0f3;
+
+  /* ── Outline ── */
+  --color-outline: #80737f;
+  --color-outline-variant: #d2c2cf;
+
+  /* ── Semantic ── */
+  --color-error: #e5484d;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-success: #12a89d;
+  --color-warning: #ffb020;
+
+  /* ── Charts ── */
+  --color-chart-1: #6c3fa1;
+  --color-chart-2: #7d4ab4;
+  --color-chart-3: #8b5cc7;
+  --color-chart-4: #9a74d6;
+  --color-chart-5: #b39ce3;
+  --color-chart-6: #d3c7f2;
+
+  /* ── Radius ── */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Spacing ── */
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-desktop: 40px;
+  --spacing-margin-mobile: 16px;
+  --container-max: 1440px;
+
+  /* ── Typography ── */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-heading: "Times New Roman", "Georgia", serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color: #0f172a;
-  background-color: #f8fafc;
+  color: var(--color-on-surface);
+  background-color: var(--color-background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,9 +99,36 @@ body,
 body {
   margin: 0;
   min-width: 320px;
-  background: #f8fafc;
+  background: #f9f9fc;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* ── Utility: Times New Roman heading ── */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ── Utility: Space Grotesk display ── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ── Focus ring helper ── */
+.focus-velvet:focus {
+  outline: none;
+  border-color: var(--color-primary-container);
+  box-shadow: 0 0 0 2px rgba(92, 29, 103, 0.18);
+}
+
+/* ── Smooth transitions globally ── */
+button,
+a,
+input,
+select,
+textarea {
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

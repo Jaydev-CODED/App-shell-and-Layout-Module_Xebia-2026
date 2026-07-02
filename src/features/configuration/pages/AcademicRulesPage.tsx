@@ -14,7 +14,10 @@ import {
   type AcademicRulesFormValues,
 } from '../schemas/academicRulesSchema'
 
+// Dummy JSON as per BRD
 const defaultValues: AcademicRulesFormValues = {
+  academicYear: '2026-2027',
+  currentSemester: 'odd',
   passingPercentage: 40,
   maximumCredits: 24,
   cgpaScale: 10,
@@ -37,6 +40,7 @@ export default function AcademicRulesPage() {
   })
 
   useEffect(() => {
+    // Simulate loading from dummy JSON / API
     const timer = window.setTimeout(() => setLoading(false), 800)
     return () => window.clearTimeout(timer)
   }, [])
@@ -53,7 +57,7 @@ export default function AcademicRulesPage() {
 
   const handleCancel = () => {
     reset(defaultValues)
-    pushToast('Changes cancelled.')
+    pushToast('Changes discarded.')
   }
 
   if (loading) {
@@ -64,28 +68,16 @@ export default function AcademicRulesPage() {
           <Skeleton className="h-8 w-72" />
           <Skeleton className="h-4 w-96" />
         </div>
-
-        <div className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="rounded-xl p-6 space-y-4" style={{ border: '1px solid #e9e9ec', background: '#fff' }}>
             <Skeleton className="h-6 w-44" />
             <Skeleton className="h-4 w-80" />
+            <div className="grid gap-4 md:grid-cols-2">
+              <Skeleton className="h-16 w-full" />
+              <Skeleton className="h-16 w-full" />
+            </div>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Skeleton className="h-16 w-full" />
-            <Skeleton className="h-16 w-full" />
-          </div>
-        </div>
-
-        <div className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-3">
-            <Skeleton className="h-6 w-36" />
-            <Skeleton className="h-4 w-72" />
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Skeleton className="h-16 w-full" />
-            <Skeleton className="h-16 w-full" />
-          </div>
-        </div>
+        ))}
       </div>
     )
   }
@@ -99,107 +91,148 @@ export default function AcademicRulesPage() {
       />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="space-y-6">
-          <FormSection>
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">Academic Evaluation</h3>
-              <p className="text-sm text-slate-500">Set the minimum performance thresholds and academic relief allowances.</p>
-            </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <ConfigInput
-                label="Passing Percentage"
-                type="number"
-                step="1"
-                min="1"
-                max="100"
-                placeholder="40"
-                error={errors.passingPercentage?.message}
-                {...register('passingPercentage')}
-              />
+        {/* ── Section 1: Academic Calendar ── */}
+        <FormSection>
+          <div className="space-y-1 pb-5" style={{ borderBottom: '1px solid #e9e9ec' }}>
+            <h3
+              className="text-lg font-bold"
+              style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+            >
+              Academic Calendar
+            </h3>
+            <p className="text-sm" style={{ color: '#4e434e' }}>
+              Set the active academic year and current running semester.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <ConfigInput
+              label="Academic Year"
+              placeholder="2026-2027"
+              helpText="Format: YYYY-YYYY (e.g. 2026-2027)"
+              error={errors.academicYear?.message}
+              {...register('academicYear')}
+            />
+            <ConfigSelect
+              label="Current Semester"
+              error={errors.currentSemester?.message}
+              {...register('currentSemester')}
+            >
+              <option value="">Select semester</option>
+              <option value="odd">Odd Semester</option>
+              <option value="even">Even Semester</option>
+            </ConfigSelect>
+          </div>
+        </FormSection>
 
-              <ConfigInput
-                label="Grace Marks"
-                type="number"
-                step="1"
-                min="0"
-                max="20"
-                placeholder="5"
-                error={errors.graceMarks?.message}
-                {...register('graceMarks')}
-              />
-            </div>
-          </FormSection>
+        {/* ── Section 2: Academic Evaluation ── */}
+        <FormSection>
+          <div className="space-y-1 pb-5" style={{ borderBottom: '1px solid #e9e9ec' }}>
+            <h3
+              className="text-lg font-bold"
+              style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+            >
+              Academic Evaluation
+            </h3>
+            <p className="text-sm" style={{ color: '#4e434e' }}>
+              Set the minimum performance thresholds and academic relief allowances.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <ConfigInput
+              label="Passing Percentage (%)"
+              type="number"
+              step="1"
+              min="1"
+              max="100"
+              placeholder="40"
+              error={errors.passingPercentage?.message}
+              {...register('passingPercentage')}
+            />
+            <ConfigInput
+              label="Grace Marks"
+              type="number"
+              step="1"
+              min="0"
+              max="20"
+              placeholder="5"
+              error={errors.graceMarks?.message}
+              {...register('graceMarks')}
+            />
+          </div>
+        </FormSection>
 
-          <FormSection>
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">Credit Policies</h3>
-              <p className="text-sm text-slate-500">Configure the load limits and academic calendar structure.</p>
-            </div>
+        {/* ── Section 3: Credit & Grading ── */}
+        <FormSection>
+          <div className="space-y-1 pb-5" style={{ borderBottom: '1px solid #e9e9ec' }}>
+            <h3
+              className="text-lg font-bold"
+              style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+            >
+              Credit & Grading System
+            </h3>
+            <p className="text-sm" style={{ color: '#4e434e' }}>
+              Configure credit load limits, semester structure, and CGPA scale.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+            <ConfigInput
+              label="Maximum Credits per Semester"
+              type="number"
+              step="1"
+              min="1"
+              max="40"
+              placeholder="24"
+              error={errors.maximumCredits?.message}
+              {...register('maximumCredits')}
+            />
+            <ConfigSelect
+              label="Semester Structure"
+              error={errors.semesterSystem?.message}
+              {...register('semesterSystem')}
+            >
+              <option value="">Select structure</option>
+              <option value="semester">Semester-based</option>
+              <option value="annual">Annual</option>
+            </ConfigSelect>
+            <ConfigInput
+              label="CGPA Scale"
+              type="number"
+              step="0.1"
+              min="1"
+              max="10"
+              placeholder="10"
+              helpText="e.g. 10 for 10-point scale"
+              error={errors.cgpaScale?.message}
+              {...register('cgpaScale')}
+            />
+          </div>
+        </FormSection>
 
-            <div className="mt-5 grid gap-4 grid-cols-1 lg:grid-cols-2">
-              <ConfigInput
-                label="Maximum Credits"
-                type="number"
-                step="1"
-                min="1"
-                max="40"
-                placeholder="24"
-                error={errors.maximumCredits?.message}
-                {...register('maximumCredits')}
-              />
-
-              <ConfigSelect
-                label="Semester System"
-                error={errors.semesterSystem?.message}
-                {...register('semesterSystem')}
-              >
-                <option value="">Select system</option>
-                <option value="semester">Semester</option>
-                <option value="annual">Annual</option>
-              </ConfigSelect>
-            </div>
-          </FormSection>
-
-          <FormSection>
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">Grading System</h3>
-              <p className="text-sm text-slate-500">Define the grading scale used for academic evaluation.</p>
-            </div>
-
-            <div className="mt-5 w-full max-w-full lg:max-w-md">
-              <ConfigInput
-                label="CGPA Scale"
-                type="number"
-                step="0.1"
-                min="1"
-                max="10"
-                placeholder="10"
-                error={errors.cgpaScale?.message}
-                {...register('cgpaScale')}
-              />
-            </div>
-          </FormSection>
-        </div>
-
-        <div className="flex flex-wrap gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+        {/* ── Action Bar ── */}
+        <div
+          className="flex flex-wrap items-center gap-3 rounded-xl px-5 py-4"
+          style={{ border: '1px solid #e9e9ec', background: '#f9f9fc' }}
+        >
           <SaveButton loading={isSubmitting} />
 
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all hover:bg-[#f3f3f6]"
+            style={{ border: '1px solid #e9e9ec', background: '#fff', color: '#1a1c1e' }}
           >
-            <RotateCcw className="h-4 w-4" />
-            Reset
+            <RotateCcw className="h-4 w-4" strokeWidth={1.5} />
+            Reset to Default
           </button>
 
           <button
             type="button"
             onClick={handleCancel}
-            className="inline-flex items-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
+            className="inline-flex items-center rounded-lg px-4 py-2.5 text-sm font-medium transition-all hover:bg-[#f3f3f6]"
+            style={{ border: '1px solid #e9e9ec', background: '#fff', color: '#4e434e' }}
           >
-            Cancel
+            Discard
           </button>
         </div>
       </form>

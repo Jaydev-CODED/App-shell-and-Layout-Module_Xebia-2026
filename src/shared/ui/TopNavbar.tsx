@@ -1,34 +1,55 @@
-import { Bell, Search, UserCircle2 } from 'lucide-react'
+import { Bell, Grid3x3, Search, UserCircle2 } from 'lucide-react'
 
 export function TopNavbar() {
   return (
-    <header className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4 sm:px-6">
-      <div>
-        <p className="text-sm font-medium text-slate-500">Operations Center</p>
-        <h1 className="text-xl font-semibold text-slate-900">Welcome back</h1>
-      </div>
+    <header
+      className="flex items-center justify-between bg-white px-6 py-3"
+      style={{ borderBottom: '1px solid #e9e9ec', minHeight: '56px' }}
+    >
+      {/* Left: Portal Label */}
+      <p className="text-base font-semibold text-[#1a1c1e]" style={{ fontFamily: 'Inter, sans-serif' }}>
+        UMS Portal
+      </p>
 
-      <div className="flex items-center gap-3">
-        <label className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 sm:flex">
-          <Search className="h-4 w-4" />
-          <input
-            type="search"
-            placeholder="Search"
-            className="w-32 border-none bg-transparent outline-none"
-          />
-        </label>
+      {/* Center: Search */}
+      <label
+        className="hidden sm:flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-[#80737f] cursor-text"
+        style={{
+          background: '#f3f3f6',
+          border: '1px solid #e9e9ec',
+          minWidth: '260px',
+        }}
+      >
+        <Search className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+        <input
+          type="search"
+          placeholder="Search UMS Portal..."
+          className="w-full border-none bg-transparent outline-none text-sm text-[#1a1c1e] placeholder:text-[#80737f]"
+        />
+      </label>
 
-        <button className="rounded-xl border border-slate-200 p-2 text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">
-          <Bell className="h-4 w-4" />
+      {/* Right: Icons */}
+      <div className="flex items-center gap-1">
+        <button
+          aria-label="Notifications"
+          className="rounded-lg p-2 text-[#4e434e] hover:bg-[#f3f3f6] hover:text-[#1a1c1e] transition-all"
+        >
+          <Bell className="h-5 w-5" strokeWidth={1.5} />
         </button>
 
-        <div className="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2">
-          <UserCircle2 className="h-5 w-5 text-slate-600" />
-          <div className="hidden text-left sm:block">
-            <p className="text-sm font-medium text-slate-900">Admin User</p>
-            <p className="text-xs text-slate-500">Super Admin</p>
-          </div>
-        </div>
+        <button
+          aria-label="Apps"
+          className="rounded-lg p-2 text-[#4e434e] hover:bg-[#f3f3f6] hover:text-[#1a1c1e] transition-all"
+        >
+          <Grid3x3 className="h-5 w-5" strokeWidth={1.5} />
+        </button>
+
+        <button
+          aria-label="Profile"
+          className="rounded-lg p-2 text-[#4e434e] hover:bg-[#f3f3f6] hover:text-[#1a1c1e] transition-all"
+        >
+          <UserCircle2 className="h-5 w-5" strokeWidth={1.5} />
+        </button>
       </div>
     </header>
   )

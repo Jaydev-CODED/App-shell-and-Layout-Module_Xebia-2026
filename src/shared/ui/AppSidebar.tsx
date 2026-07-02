@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import {
-  Building2,
-  ChevronLeft,
-  ChevronRight,
-  GraduationCap,
   LayoutDashboard,
-  Settings2,
-  Sparkles,
+  BookOpen,
   Users,
+  UserCheck,
+  BarChart3,
+  Settings2,
+  HelpCircle,
+  LogOut,
+  Plus,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -20,17 +21,20 @@ type SidebarItem = {
 
 const sidebarItems: SidebarItem[] = [
   { label: 'Dashboard', to: '/', icon: LayoutDashboard },
-  { label: 'University', to: '/university', icon: Building2 },
-  { label: 'Students', to: '/students', icon: GraduationCap },
-  { label: 'Faculty', to: '/faculty', icon: Users },
+  { label: 'Academic Affairs', to: '/university', icon: BookOpen },
+  { label: 'Student Registry', to: '/students', icon: UserCheck },
+  { label: 'Faculty Management', to: '/faculty', icon: Users },
+  { label: 'Financial Audit', to: '/financial', icon: BarChart3 },
   {
-    label: 'Settings',
+    label: 'System Settings',
     to: '/settings/configuration',
     icon: Settings2,
     children: [
       { label: 'Configuration', to: '/settings/configuration' },
       { label: 'Academic Rules', to: '/settings/academic-rules' },
       { label: 'Attendance Rules', to: '/settings/attendance-rules' },
+      { label: 'Notifications', to: '/settings/notifications' },
+      { label: 'System Preferences', to: '/settings/system-preferences' },
       { label: 'Feature Flags', to: '/settings/feature-flags' },
       { label: 'Branding', to: '/settings/branding' },
     ],
@@ -44,32 +48,43 @@ type AppSidebarProps = {
 
 export function AppSidebar({ collapsed, onToggle }: AppSidebarProps) {
   return (
-    <aside className="flex h-full flex-col border-b border-slate-200 bg-slate-950 text-slate-100 lg:border-b-0 lg:border-r">
-      <div className="flex items-center justify-between border-b border-slate-800 px-4 py-4">
-        {!collapsed ? (
-          <div>
-            <p className="text-sm font-semibold tracking-[0.25em] text-slate-400 uppercase">
-              Admin
-            </p>
-            <p className="text-base font-semibold text-white">University Portal</p>
-          </div>
-        ) : (
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-white">
-            <Sparkles className="h-5 w-5" />
+    <aside
+      className="flex h-full flex-col bg-white text-[#1a1c1e]"
+      style={{ borderRight: '1px solid #e9e9ec' }}
+    >
+      {/* ── Brand Header ── */}
+      <div
+        className="flex items-center gap-3 px-5 py-5"
+        style={{ borderBottom: '1px solid #e9e9ec' }}
+      >
+        <div
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white text-sm font-bold"
+          style={{ background: '#5c1d67' }}
+        >
+          AG
+        </div>
+        {!collapsed && (
+          <div className="overflow-hidden">
+            <p className="truncate text-sm font-bold text-[#1a1c1e]">Academy Global</p>
+            <p className="truncate text-xs text-[#4e434e]">Institutional Oversight</p>
           </div>
         )}
-
         <button
           type="button"
           onClick={onToggle}
-          className="rounded-lg border border-slate-800 p-2 text-slate-300 transition hover:bg-slate-800 hover:text-white"
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          className="ml-auto rounded-md p-1 text-[#80737f] hover:bg-[#f3f3f6] hover:text-[#1a1c1e]"
         >
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            {collapsed
+              ? <path d="M9 18l6-6-6-6" />
+              : <path d="M15 18l-6-6 6-6" />}
+          </svg>
         </button>
       </div>
 
-      <nav className="flex-1 space-y-2 px-3 py-4">
+      {/* ── Navigation ── */}
+      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
         {sidebarItems.map((item) => {
           const Icon = item.icon
 
@@ -77,33 +92,31 @@ export function AppSidebar({ collapsed, onToggle }: AppSidebarProps) {
             <div key={item.label}>
               <NavLink
                 to={item.to}
-                className={({ isActive }) =>
-                  [
-                    'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:-translate-y-0.5',
-                    isActive
-                      ? 'bg-slate-800 text-white shadow-sm'
-                      : 'text-slate-300 hover:bg-slate-900 hover:text-white',
-                  ].join(' ')
-                }
+                end={item.to === '/'}
+                className={({ isActive }) => [
+                  'group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
+                  isActive
+                    ? 'bg-[#f3e8f5] text-[#5c1d67]'
+                    : 'text-[#4e434e] hover:bg-[#f3f3f6] hover:text-[#1a1c1e]',
+                ].join(' ')}
+                style={({ isActive }) => isActive ? { borderLeft: '3px solid #5c1d67', paddingLeft: '9px' } : { borderLeft: '3px solid transparent', paddingLeft: '9px' }}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-5 w-5 shrink-0" strokeWidth={1.5} />
                 {!collapsed && <span>{item.label}</span>}
               </NavLink>
 
               {!collapsed && item.children && (
-                <div className="ml-8 mt-1 space-y-1 border-l border-slate-800 pl-3">
+                <div className="ml-8 mt-0.5 mb-1 space-y-0.5" style={{ paddingLeft: '12px', borderLeft: '1px solid #e9e9ec' }}>
                   {item.children.map((child) => (
                     <NavLink
                       key={child.to}
                       to={child.to}
-                      className={({ isActive }) =>
-                        [
-                          'block rounded-lg px-2 py-1.5 text-sm transition hover:text-slate-100',
-                          isActive
-                            ? 'text-white'
-                            : 'text-slate-400 hover:text-slate-100',
-                        ].join(' ')
-                      }
+                      className={({ isActive }) => [
+                        'block rounded-md px-2 py-1.5 text-sm transition-all',
+                        isActive
+                          ? 'font-semibold text-[#5c1d67]'
+                          : 'text-[#80737f] hover:text-[#1a1c1e]',
+                      ].join(' ')}
                     >
                       {child.label}
                     </NavLink>
@@ -114,6 +127,47 @@ export function AppSidebar({ collapsed, onToggle }: AppSidebarProps) {
           )
         })}
       </nav>
+
+      {/* ── Bottom Section ── */}
+      <div className="px-3 pb-4 space-y-1" style={{ borderTop: '1px solid #e9e9ec', paddingTop: '12px' }}>
+        {!collapsed && (
+          <button
+            type="button"
+            className="flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+            style={{ background: '#5c1d67' }}
+          >
+            <Plus className="h-4 w-4" strokeWidth={2} />
+            New Report
+          </button>
+        )}
+        {collapsed && (
+          <button
+            type="button"
+            className="flex w-full items-center justify-center rounded-lg py-2.5 text-white transition-all hover:opacity-90"
+            style={{ background: '#5c1d67' }}
+          >
+            <Plus className="h-4 w-4" strokeWidth={2} />
+          </button>
+        )}
+
+        <NavLink
+          to="/help"
+          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#4e434e] hover:bg-[#f3f3f6] hover:text-[#1a1c1e] transition-all"
+          style={{ borderLeft: '3px solid transparent', paddingLeft: '9px' }}
+        >
+          <HelpCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
+          {!collapsed && <span>Help Center</span>}
+        </NavLink>
+
+        <button
+          type="button"
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#e5484d] hover:bg-[#fff0f0] transition-all"
+          style={{ borderLeft: '3px solid transparent', paddingLeft: '9px' }}
+        >
+          <LogOut className="h-5 w-5 shrink-0" strokeWidth={1.5} />
+          {!collapsed && <span>Sign Out</span>}
+        </button>
+      </div>
     </aside>
   )
 }

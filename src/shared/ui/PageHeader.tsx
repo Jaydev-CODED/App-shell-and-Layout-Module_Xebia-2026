@@ -6,10 +6,32 @@ type PageHeaderProps = {
 
 export function PageHeader({ eyebrow, title, description }: PageHeaderProps) {
   return (
-    <div className="space-y-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">{eyebrow}</p>
-      <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">{title}</h2>
-      {description && <p className="max-w-2xl text-sm leading-6 text-slate-600 sm:text-[15px]">{description}</p>}
+    <div className="space-y-2">
+      <p
+        className="text-xs font-semibold uppercase tracking-widest"
+        style={{ color: '#9a2e9d', letterSpacing: '0.1em', fontFamily: 'Inter, sans-serif' }}
+      >
+        {eyebrow}
+      </p>
+      <h1
+        className="text-3xl font-bold"
+        style={{
+          fontFamily: '"Times New Roman", Georgia, serif',
+          color: '#1a1c1e',
+          lineHeight: '1.2',
+          fontSize: 'clamp(24px, 3vw, 32px)',
+        }}
+      >
+        {title}
+      </h1>
+      {description && (
+        <p
+          className="max-w-2xl text-sm leading-6"
+          style={{ color: '#555555', fontFamily: 'Inter, sans-serif' }}
+        >
+          {description}
+        </p>
+      )}
     </div>
   )
 }

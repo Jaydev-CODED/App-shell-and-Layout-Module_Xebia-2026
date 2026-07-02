@@ -10,6 +10,8 @@ const AcademicRulesPage = lazy(() => import('../features/configuration/pages/Aca
 const AttendanceRulesPage = lazy(() => import('../features/configuration/pages/AttendanceRulesPage'))
 const FeatureFlagsPage = lazy(() => import('../features/configuration/pages/FeatureFlagsPage'))
 const BrandingPage = lazy(() => import('../features/configuration/pages/BrandingPage'))
+const NotificationSettingsPage = lazy(() => import('../features/configuration/pages/NotificationSettingsPage'))
+const SystemPreferencesPage = lazy(() => import('../features/configuration/pages/SystemPreferencesPage'))
 
 function PageLoader({ children }: { children: ReactNode }) {
   return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
@@ -55,6 +57,22 @@ export const router = createBrowserRouter([
                 element: (
                   <PageLoader>
                     <AttendanceRulesPage />
+                  </PageLoader>
+                ),
+              },
+              {
+                path: 'notifications',
+                element: (
+                  <PageLoader>
+                    <NotificationSettingsPage />
+                  </PageLoader>
+                ),
+              },
+              {
+                path: 'system-preferences',
+                element: (
+                  <PageLoader>
+                    <SystemPreferencesPage />
                   </PageLoader>
                 ),
               },

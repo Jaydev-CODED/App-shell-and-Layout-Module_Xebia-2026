@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { ImagePlus, MoonStar, Sparkles, UploadCloud, Palette } from 'lucide-react'
-import { ColorInput } from '../../../shared/ui/ColorInput'
-import { ConfigInput } from '../../../shared/ui/ConfigInput'
-import { FormSection } from '../../../shared/ui/FormSection'
+import { ImagePlus, Monitor, UploadCloud, Palette } from 'lucide-react'
 import { EmptyState } from '../../../shared/ui/EmptyState'
 import { PageHeader } from '../../../shared/ui/PageHeader'
 import { Skeleton } from '../../../shared/ui/Skeleton'
 import { useToast } from '../../../shared/ui/ToastProvider'
+import { ConfigInput } from '../../../shared/ui/ConfigInput'
+
 
 export default function BrandingPage() {
   const { pushToast } = useToast()
@@ -14,9 +13,9 @@ export default function BrandingPage() {
   const [universityName, setUniversityName] = useState('Northbridge University')
   const [shortName, setShortName] = useState('NBU')
   const [footerText, setFooterText] = useState('© 2026 Northbridge University. All rights reserved.')
-  const [primaryColor, setPrimaryColor] = useState('#0f172a')
-  const [secondaryColor, setSecondaryColor] = useState('#2563eb')
-  const [darkMode, setDarkMode] = useState(false)
+  const [primaryColor, setPrimaryColor] = useState('#5C1D67')
+  const [secondaryColor, setSecondaryColor] = useState('#E9E9EC')
+  const [typographyMode, setTypographyMode] = useState<'serif' | 'sans'>('serif')
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 800)
@@ -31,24 +30,16 @@ export default function BrandingPage() {
           <Skeleton className="h-8 w-72" />
           <Skeleton className="h-4 w-96" />
         </div>
-
-        <div className="grid gap-6 grid-cols-1 xl:grid-cols-[1.15fr_0.85fr]">
-          <div className="space-y-6">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <Skeleton className="h-6 w-44" />
-              <div className="mt-4 grid gap-4 md:grid-cols-2">
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-16 w-full md:col-span-2" />
+        <div className="grid gap-6 xl:grid-cols-[1fr_0.85fr]">
+          <div className="space-y-5">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="rounded-xl p-6" style={{ border: '1px solid #e9e9ec', background: '#fff' }}>
+                <Skeleton className="h-6 w-44" />
+                <Skeleton className="mt-4 h-28 w-full" />
               </div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <Skeleton className="h-6 w-44" />
-              <Skeleton className="mt-4 h-28 w-full" />
-            </div>
+            ))}
           </div>
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl p-6" style={{ border: '1px solid #e9e9ec', background: '#fff' }}>
             <Skeleton className="h-6 w-32" />
             <Skeleton className="mt-4 h-56 w-full" />
           </div>
@@ -62,13 +53,13 @@ export default function BrandingPage() {
       <div className="space-y-6">
         <PageHeader
           eyebrow="Brand Identity"
-          title="Branding Configuration"
-          description="Customize the institution brand, visual palette, and preferred theme experience."
+          title="Branding & Theme"
+          description="Customize the portal's visual identity across all user interfaces."
         />
         <EmptyState
           icon={Palette}
           title="No Branding Data"
-          description="Branding details have not been configured yet. Add a logo, colors, and identity copy to get started."
+          description="Branding details have not been configured yet."
           actionLabel="Set Branding"
           onAction={() => pushToast('Branding setup placeholder activated.')}
         />
@@ -80,146 +71,338 @@ export default function BrandingPage() {
     <div className="space-y-6">
       <PageHeader
         eyebrow="Brand Identity"
-        title="Branding Configuration"
-        description="Customize the institution brand, visual palette, and preferred theme experience."
+        title="Branding & Theme"
+        description="Customize the portal's visual identity across all user interfaces."
       />
 
-      <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="space-y-6">
-          <FormSection className="space-y-6">
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">University Identity</h3>
-              <p className="text-sm text-slate-500">Shape the name, short label, and footer text that appear across the portal.</p>
+      <div className="grid gap-6 xl:grid-cols-[1fr_0.85fr]">
+        {/* Left column */}
+        <div className="space-y-5">
+          {/* Institution Identity */}
+          <div className="rounded-xl bg-white p-6 space-y-5" style={{ border: '1px solid #e9e9ec' }}>
+            <div className="pb-4" style={{ borderBottom: '1px solid #e9e9ec' }}>
+              <h3
+                className="text-lg font-bold"
+                style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+              >
+                Institution Identity
+              </h3>
             </div>
 
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+            {/* Logo upload */}
+            <div>
+              <p className="mb-2 text-xs font-medium" style={{ color: '#4e434e' }}>Primary Logo</p>
+              <button
+                type="button"
+                onClick={() => pushToast('Logo upload placeholder activated.')}
+                className="flex w-full flex-col items-center justify-center gap-3 rounded-xl py-10 text-center transition-all"
+                style={{
+                  border: '1.5px dashed #d2c2cf',
+                  background: '#faf9fc',
+                }}
+                onMouseEnter={(e) => {
+                  ;(e.currentTarget as HTMLButtonElement).style.borderColor = '#5c1d67'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.currentTarget as HTMLButtonElement).style.borderColor = '#d2c2cf'
+                }}
+              >
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-full"
+                  style={{ background: '#f3e8f5' }}
+                >
+                  <UploadCloud className="h-5 w-5" style={{ color: '#5c1d67' }} strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: '#1a1c1e' }}>
+                    Click to upload or drag and drop
+                  </p>
+                  <p className="text-xs" style={{ color: '#80737f' }}>SVG, PNG, JPG (Max 2MB)</p>
+                </div>
+              </button>
+            </div>
+
+            {/* Name fields */}
+            <div className="grid gap-4 md:grid-cols-2">
               <ConfigInput
                 label="University Name"
                 value={universityName}
-                onChange={(event) => setUniversityName(event.target.value)}
+                onChange={(e) => setUniversityName(e.target.value)}
                 helpText="Displayed in headers and major views."
               />
-
               <ConfigInput
-                label="University Short Name"
+                label="Short Name"
                 value={shortName}
-                onChange={(event) => setShortName(event.target.value)}
+                onChange={(e) => setShortName(e.target.value)}
                 helpText="Used in compact navigation and tabs."
               />
-
               <div className="md:col-span-2">
                 <ConfigInput
                   label="Footer Text"
                   value={footerText}
-                  onChange={(event) => setFooterText(event.target.value)}
+                  onChange={(e) => setFooterText(e.target.value)}
                   helpText="Shown in the lower footer across the platform."
                 />
               </div>
             </div>
-          </FormSection>
+          </div>
 
-          <FormSection className="space-y-6">
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">Visual Branding</h3>
-              <p className="text-sm text-slate-500">Upload your logo and define the colors that represent the institution.</p>
+          {/* Brand Colors */}
+          <div className="rounded-xl bg-white p-6 space-y-5" style={{ border: '1px solid #e9e9ec' }}>
+            <div className="pb-4" style={{ borderBottom: '1px solid #e9e9ec' }}>
+              <h3
+                className="text-lg font-bold"
+                style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+              >
+                Brand Colors
+              </h3>
             </div>
-
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-              <label className="block space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-slate-700">University Logo Preview</span>
-                <div
-                  className="flex cursor-pointer items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/80 px-4 py-8 text-center transition hover:border-slate-400"
-                  onClick={() => pushToast('Logo upload placeholder activated.')}
-                >
-                  <div>
-                    <UploadCloud className="mx-auto h-8 w-8 text-slate-400" />
-                    <p className="mt-2 text-sm font-medium text-slate-700">Upload university logo</p>
-                    <p className="text-xs text-slate-500">PNG, JPG, or SVG up to 2MB</p>
-                  </div>
-                  <input type="file" className="hidden" />
-                </div>
-              </label>
-
-              <ColorInput label="Primary Color" value={primaryColor} onChange={setPrimaryColor} />
-              <ColorInput label="Secondary Color" value={secondaryColor} onChange={setSecondaryColor} />
-            </div>
-          </FormSection>
-
-          <FormSection className="space-y-4">
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-slate-900">Experience Settings</h3>
-              <p className="text-sm text-slate-500">Adjust interface behavior for light and dark appearances.</p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <div className="rounded-xl bg-slate-900 p-2 text-white">
-                    <MoonStar className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">Dark Mode Toggle</p>
-                    <p className="text-sm text-slate-500">Enable dark interfaces for the admin experience.</p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={darkMode}
-                  onClick={() => {
-                    setDarkMode((value) => !value)
-                    pushToast('Dark mode preference updated.')
-                  }}
-                  className={`relative inline-flex h-7 w-12 items-center rounded-full transition ${
-                    darkMode ? 'bg-slate-900' : 'bg-slate-300'
-                  }`}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Primary swatch */}
+              <div>
+                <p className="mb-2 text-xs font-medium" style={{ color: '#4e434e' }}>Primary Color</p>
+                <label
+                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-all"
+                  style={{ border: '1px solid #e9e9ec', background: '#f9f9fc' }}
                 >
                   <span
-                    className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition ${
-                      darkMode ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                    className="h-9 w-9 shrink-0 rounded-md"
+                    style={{ background: primaryColor, border: '1px solid rgba(0,0,0,0.08)' }}
                   />
-                </button>
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: '#1a1c1e' }}>{primaryColor}</p>
+                    <p className="text-xs" style={{ color: '#80737f' }}>Deep Velvet</p>
+                  </div>
+                  <input
+                    type="color"
+                    value={primaryColor}
+                    onChange={(e) => setPrimaryColor(e.target.value)}
+                    className="sr-only"
+                  />
+                </label>
+              </div>
+
+              {/* Secondary swatch */}
+              <div>
+                <p className="mb-2 text-xs font-medium" style={{ color: '#4e434e' }}>Secondary Color</p>
+                <label
+                  className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-3 transition-all"
+                  style={{ border: '1px solid #e9e9ec', background: '#f9f9fc' }}
+                >
+                  <span
+                    className="h-9 w-9 shrink-0 rounded-md"
+                    style={{ background: secondaryColor, border: '1px solid rgba(0,0,0,0.08)' }}
+                  />
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: '#1a1c1e' }}>{secondaryColor}</p>
+                    <p className="text-xs" style={{ color: '#80737f' }}>Light Grey</p>
+                  </div>
+                  <input
+                    type="color"
+                    value={secondaryColor}
+                    onChange={(e) => setSecondaryColor(e.target.value)}
+                    className="sr-only"
+                  />
+                </label>
               </div>
             </div>
-          </FormSection>
-        </div>
-
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.25em] text-slate-500">
-            <Sparkles className="h-4 w-4" />
-            Live Preview
           </div>
 
+          {/* Typography Strategy */}
+          <div className="rounded-xl bg-white p-6 space-y-5" style={{ border: '1px solid #e9e9ec' }}>
+            <div className="pb-4" style={{ borderBottom: '1px solid #e9e9ec' }}>
+              <h3
+                className="text-lg font-bold"
+                style={{ fontFamily: '"Times New Roman", serif', color: '#1a1c1e' }}
+              >
+                Typography Strategy
+              </h3>
+            </div>
+
+            <div className="space-y-3">
+              {/* Serif option */}
+              <label
+                className="flex cursor-pointer items-start gap-3 rounded-xl px-4 py-4 transition-all"
+                style={{
+                  border: typographyMode === 'serif' ? '1.5px solid #5c1d67' : '1px solid #e9e9ec',
+                  background: typographyMode === 'serif' ? '#faf5ff' : '#f9f9fc',
+                }}
+              >
+                <div className="flex items-center pt-0.5">
+                  <span
+                    className="flex h-4 w-4 items-center justify-center rounded-full"
+                    style={{
+                      border: typographyMode === 'serif' ? '5px solid #9a2e9d' : '1.5px solid #d2c2cf',
+                    }}
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold" style={{ color: '#1a1c1e' }}>
+                    Institutional Heritage (Classic Serif)
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: '#4e434e' }}>
+                    Times New Roman headings paired with Inter UI for gravitas.
+                  </p>
+                </div>
+                <span
+                  className="h-2 w-2 shrink-0 rounded-full mt-1.5"
+                  style={{ background: typographyMode === 'serif' ? '#9a2e9d' : 'transparent' }}
+                />
+                <input
+                  type="radio"
+                  name="typography"
+                  value="serif"
+                  checked={typographyMode === 'serif'}
+                  onChange={() => setTypographyMode('serif')}
+                  className="sr-only"
+                />
+              </label>
+
+              {/* Sans option */}
+              <label
+                className="flex cursor-pointer items-start gap-3 rounded-xl px-4 py-4 transition-all"
+                style={{
+                  border: typographyMode === 'sans' ? '1.5px solid #5c1d67' : '1px solid #e9e9ec',
+                  background: typographyMode === 'sans' ? '#faf5ff' : '#f9f9fc',
+                }}
+              >
+                <div className="flex items-center pt-0.5">
+                  <span
+                    className="flex h-4 w-4 items-center justify-center rounded-full"
+                    style={{
+                      border: typographyMode === 'sans' ? '5px solid #9a2e9d' : '1.5px solid #d2c2cf',
+                    }}
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold" style={{ color: '#1a1c1e' }}>
+                    Modern Enterprise (Sans-Serif)
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: '#4e434e' }}>
+                    Clean, utilitarian sans-serif stack for high-density data.
+                  </p>
+                </div>
+                <input
+                  type="radio"
+                  name="typography"
+                  value="sans"
+                  checked={typographyMode === 'sans'}
+                  onChange={() => setTypographyMode('sans')}
+                  className="sr-only"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Right column: Live Preview */}
+        <div className="xl:sticky xl:top-6 xl:self-start">
           <div
-            className="mt-5 rounded-3xl border border-slate-200 p-4"
-            style={{ background: darkMode ? '#0f172a' : '#f8fafc' }}
+            className="rounded-xl bg-white p-5"
+            style={{ border: '1px solid #e9e9ec' }}
           >
-            <div className="rounded-2xl border border-white/20 p-4" style={{ background: primaryColor, color: '#ffffff' }}>
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/80">Campus Portal</p>
-                  <h3 className="mt-2 text-xl font-semibold">{universityName}</h3>
+            {/* Preview header */}
+            <p
+              className="mb-4 text-[10px] font-semibold uppercase tracking-widest"
+              style={{ color: '#80737f', letterSpacing: '0.14em' }}
+            >
+              Live Preview
+            </p>
+
+            {/* Simulated shell */}
+            <div
+              className="overflow-hidden rounded-xl"
+              style={{ border: '1px solid #e9e9ec', background: '#f9f9fc' }}
+            >
+              {/* Mini topbar */}
+              <div
+                className="flex items-center gap-2 px-3 py-2"
+                style={{ background: '#fff', borderBottom: '1px solid #e9e9ec' }}
+              >
+                <div
+                  className="flex h-5 w-5 items-center justify-center rounded-full text-[8px] font-bold text-white"
+                  style={{ background: primaryColor }}
+                >
+                  {shortName.slice(0, 1)}
                 </div>
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20">
-                  <ImagePlus className="h-5 w-5" />
+                <span className="text-[11px] font-semibold" style={{ color: '#1a1c1e' }}>
+                  {universityName}
+                </span>
+                <div className="ml-auto h-3 w-3 rounded-full" style={{ background: '#e9e9ec' }} />
+              </div>
+
+              {/* Mini body */}
+              <div className="flex gap-2 p-3">
+                {/* Mini sidebar */}
+                <div className="flex w-20 flex-col gap-1.5 shrink-0">
+                  <div className="h-2 w-full rounded" style={{ background: '#e9e9ec' }} />
+                  <div
+                    className="h-2 w-full rounded"
+                    style={{ background: primaryColor, opacity: 0.8 }}
+                  />
+                  <div className="h-2 w-3/4 rounded" style={{ background: '#e9e9ec' }} />
+                  <div className="h-2 w-5/6 rounded" style={{ background: '#e9e9ec' }} />
+                </div>
+
+                {/* Mini content */}
+                <div className="flex-1 space-y-2">
+                  <div className="h-2 w-2/3 rounded" style={{ background: '#e9e9ec' }} />
+                  <div className="h-2 w-1/2 rounded" style={{ background: '#d2c2cf' }} />
+
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <div
+                      className="h-8 rounded-md"
+                      style={{ background: primaryColor, opacity: 0.9 }}
+                    />
+                    <div className="h-8 rounded-md" style={{ background: secondaryColor, border: '1px solid #e9e9ec' }} />
+                  </div>
+
+                  <div className="rounded-md p-2 mt-2" style={{ background: '#fff', border: '1px solid #e9e9ec' }}>
+                    <div className="flex justify-around items-end gap-1 h-10">
+                      {['#6C3FA1', '#8B5CC7', '#B39CE3', '#D3C7F2'].map((c, i) => (
+                        <div
+                          key={i}
+                          className="flex-1 rounded-sm"
+                          style={{ background: c, height: `${40 + i * 15}%` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-semibold text-slate-800">{shortName}</span>
-                <span className="text-slate-500">{footerText}</span>
+            {/* Preview footer info */}
+            <div className="mt-4 space-y-1.5">
+              <div className="flex items-center gap-2">
+                <Monitor className="h-3.5 w-3.5" style={{ color: '#80737f' }} strokeWidth={1.5} />
+                <span className="text-xs" style={{ color: '#4e434e' }}>
+                  {typographyMode === 'serif' ? 'Times New Roman / Inter' : 'Inter / Inter'}
+                </span>
               </div>
-              <div className="mt-4 flex gap-3">
-                <div className="h-10 flex-1 rounded-xl" style={{ background: secondaryColor }} />
-                <div className="h-10 flex-1 rounded-xl border border-slate-200 bg-slate-100" />
+              <div className="flex items-center gap-2">
+                <ImagePlus className="h-3.5 w-3.5" style={{ color: '#80737f' }} strokeWidth={1.5} />
+                <span className="text-xs" style={{ color: '#4e434e' }}>{shortName} — {universityName}</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Publish action bar */}
+      <div
+        className="flex justify-end rounded-xl px-5 py-4"
+        style={{ border: '1px solid #e9e9ec', background: '#f9f9fc' }}
+      >
+        <button
+          type="button"
+          onClick={() => pushToast('Branding published successfully.')}
+          className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+          style={{ background: '#5c1d67' }}
+        >
+          <UploadCloud className="h-4 w-4" strokeWidth={1.5} />
+          Publish Branding
+        </button>
       </div>
     </div>
   )

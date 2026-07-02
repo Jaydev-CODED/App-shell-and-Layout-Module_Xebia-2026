@@ -7,7 +7,10 @@ type FormSectionProps = {
 
 export function FormSection({ children, className = '' }: FormSectionProps) {
   return (
-    <div className={`rounded-[24px] border border-slate-200 bg-white/95 p-6 shadow-[0_16px_50px_-24px_rgba(15,23,42,0.4)] sm:p-7 ${className}`}>
+    <div
+      className={`rounded-xl bg-white p-6 ${className}`}
+      style={{ border: '1px solid #e9e9ec' }}
+    >
       {children}
     </div>
   )
