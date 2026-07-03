@@ -17,6 +17,35 @@
   flex-direction: column;
   padding: var(--space-4) 0;
   box-sizing: border-box;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidenav-closed {
+  transform: translateX(-240px);
+}
+
+.sidebar-toggle-btn {
+  padding: 0 !important;
+  border-radius: var(--radius-full) !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--color-primary-container) !important;
+  margin-right: var(--space-2) !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: var(--color-surface-container-low) !important;
+}
+
+.sidebar-toggle-btn .material-symbols-outlined {
+  font-size: 24px;
 }
 
 .sidenav-link {
@@ -59,6 +88,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topbar-full {
+  width: 100% !important;
 }
 
 .main-layout {
@@ -67,6 +101,31 @@
   flex-grow: 1;
   min-height: 100vh;
   box-sizing: border-box;
+  transition: margin-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-layout-full {
+  margin-left: 0 !important;
+}
+
+/* Mobile responsive overlay overrides */
+@media (max-width: 767px) {
+  .sidenav {
+    z-index: 60;
+    transform: translateX(-240px) !important;
+  }
+  
+  .sidenav:not(.sidenav-closed) {
+    transform: translateX(0) !important;
+  }
+  
+  .main-layout-full, .main-layout {
+    margin-left: 0 !important;
+  }
+  
+  .topbar {
+    width: 100% !important;
+  }
 }
 
 .content-container {

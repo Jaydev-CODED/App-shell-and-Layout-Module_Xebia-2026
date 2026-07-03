@@ -153,6 +153,7 @@ function App() {
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState<"success" | "error" | "warning" | "info">("success");
   const [viewMode, setViewMode] = useState<"tabs" | "all">("tabs");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Selection Inputs State
   const [checkboxVal, setCheckboxVal] = useState(true);
@@ -621,7 +622,7 @@ function App() {
   return (
     <div className="app-layout">
       {/* SideNavBar */}
-      <nav className="sidenav fixed left-0 top-0 h-full w-[240px] hidden md:flex flex-col border-r border-surface-variant bg-background z-50 py-4">
+      <nav className={`sidenav ${isSidebarOpen ? "" : "sidenav-closed"} fixed left-0 top-0 h-full w-[240px] flex flex-col border-r border-surface-variant bg-background z-50 py-4`}>
         <div className="px-6 mb-8 mt-4">
           <h1 className="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
@@ -638,10 +639,18 @@ function App() {
       </nav>
 
       {/* Main Content View */}
-      <div className="main-layout flex-1 md:ml-[240px] flex flex-col min-h-screen">
+      <div className={`main-layout flex-1 ${isSidebarOpen ? "md:ml-[240px]" : "main-layout-full"} flex flex-col min-h-screen`}>
         {/* TopAppBar */}
-        <header className="topbar fixed top-0 right-0 w-full md:w-[calc(100%-240px)] z-40 bg-background/90 backdrop-blur-md border-b border-surface-variant flex justify-between items-center h-16 px-6 md:px-10">
+        <header className={`topbar fixed top-0 right-0 ${isSidebarOpen ? "md:w-[calc(100%-240px)]" : "topbar-full"} w-full z-40 bg-background/90 backdrop-blur-md border-b border-surface-variant flex justify-between items-center h-16 px-6 md:px-10`}>
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="sidebar-toggle-btn"
+              aria-label="Toggle Sidebar"
+            >
+              <span className="material-symbols-outlined">menu</span>
+            </Button>
             <span className="font-headline-sm text-headline-sm font-bold text-primary">Lumina UMS</span>
           </div>
           <div className="flex items-center gap-6">
