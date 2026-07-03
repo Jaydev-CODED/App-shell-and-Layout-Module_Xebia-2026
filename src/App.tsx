@@ -152,6 +152,7 @@ function App() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState<"success" | "error" | "warning" | "info">("success");
+  const [viewMode, setViewMode] = useState<"tabs" | "all">("tabs");
 
   // Selection Inputs State
   const [checkboxVal, setCheckboxVal] = useState(true);
@@ -386,6 +387,23 @@ function App() {
                   <div className="flex-1 space-y-2">
                     <Skeleton variant="text" width="60%" />
                     <Skeleton variant="text" width="40%" />
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-4 pt-4 border-t border-surface-variant/50">
+                <span className="font-label-sm block text-[10px] text-text-secondary">AVATARS</span>
+                <div className="flex items-center gap-4 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <Avatar initials="JD" size="sm" alt="John Doe Small" />
+                    <Avatar initials="JD" size="md" alt="John Doe Medium" />
+                    <Avatar initials="JD" size="lg" alt="John Doe Large" />
+                    <span className="font-body-sm text-text-secondary">Initials</span>
+                  </div>
+                  <div className="flex items-center gap-2 border-l border-surface-variant/50 pl-4">
+                    <Avatar src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kYHNGCAt1FazWMvJS8v3jklwNG8t1mkMyWkZadbBlkbTsrfMNSJ0QIQMJEFkPYSSSl4nGz1gtuy66pM6drRnKr6YsUo6SM8WDh6zuc-WBrPeHwAR-mRtZrGMhMiiVhAHvsvldqdXNx2dcNTZutW9xAyUdV7Dc6ttRcSuPhgasNxevx80rsi7tpiqSI1hiM-kKo8VciOElKA1pUT4qoxs-NA8QsTG9OmCTROLpKqFbPmcBZbFe3vYAfgD5ks_BycP0i5cAM75Jm3w" size="sm" alt="Image Small" />
+                    <Avatar src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kYHNGCAt1FazWMvJS8v3jklwNG8t1mkMyWkZadbBlkbTsrfMNSJ0QIQMJEFkPYSSSl4nGz1gtuy66pM6drRnKr6YsUo6SM8WDh6zuc-WBrPeHwAR-mRtZrGMhMiiVhAHvsvldqdXNx2dcNTZutW9xAyUdV7Dc6ttRcSuPhgasNxevx80rsi7tpiqSI1hiM-kKo8VciOElKA1pUT4qoxs-NA8QsTG9OmCTROLpKqFbPmcBZbFe3vYAfgD5ks_BycP0i5cAM75Jm3w" size="md" alt="Image Medium" />
+                    <Avatar src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kYHNGCAt1FazWMvJS8v3jklwNG8t1mkMyWkZadbBlkbTsrfMNSJ0QIQMJEFkPYSSSl4nGz1gtuy66pM6drRnKr6YsUo6SM8WDh6zuc-WBrPeHwAR-mRtZrGMhMiiVhAHvsvldqdXNx2dcNTZutW9xAyUdV7Dc6ttRcSuPhgasNxevx80rsi7tpiqSI1hiM-kKo8VciOElKA1pUT4qoxs-NA8QsTG9OmCTROLpKqFbPmcBZbFe3vYAfgD5ks_BycP0i5cAM75Jm3w" size="lg" alt="Image Large" />
+                    <span className="font-body-sm text-text-secondary">Image</span>
                   </div>
                 </div>
               </div>
@@ -632,15 +650,47 @@ function App() {
         </header>
 
         <main className="content-container mt-16 p-6 md:p-10 max-w-[1440px] mx-auto w-full space-y-8">
-          <div className="mb-6">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-2">Design System Sandbox</h2>
-            <p className="font-body-lg text-body-lg text-text-secondary">
-              Conversion canvas of design references into reusable React + TypeScript components.
-            </p>
+          <div className="mb-6 flex justify-between items-center flex-wrap gap-4">
+            <div>
+              <h2 className="font-headline-lg text-headline-lg text-primary mb-2">Design System Sandbox</h2>
+              <p className="font-body-lg text-body-lg text-text-secondary">
+                Conversion canvas of design references into reusable React + TypeScript components.
+              </p>
+            </div>
+            <div className="flex gap-2 bg-surface-container-low p-1 rounded-lg border border-surface-variant/50">
+              <Button
+                variant={viewMode === "tabs" ? "primary" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("tabs")}
+                style={{ padding: "6px 12px" }}
+              >
+                Tabs View
+              </Button>
+              <Button
+                variant={viewMode === "all" ? "primary" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("all")}
+                style={{ padding: "6px 12px" }}
+              >
+                Show All
+              </Button>
+            </div>
           </div>
 
-          {/* Tabs Navigator to explore segments */}
-          <Tabs tabs={dashboardTabs} />
+          {viewMode === "tabs" ? (
+            <Tabs tabs={dashboardTabs} />
+          ) : (
+            <div className="space-y-10">
+              {dashboardTabs.map((tab) => (
+                <section key={tab.id} className="level-1-card p-6 space-y-6">
+                  <div className="mb-4">
+                    <h3 className="font-headline-md text-headline-md text-primary border-b border-surface-variant pb-2">{tab.label}</h3>
+                  </div>
+                  {tab.content}
+                </section>
+              ))}
+            </div>
+          )}
         </main>
       </div>
 
