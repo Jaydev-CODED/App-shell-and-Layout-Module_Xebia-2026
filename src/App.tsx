@@ -42,9 +42,9 @@ function App() {
                 key={link.label}
                 to={link.to}
                 className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out ${
-                  isActive || (link.to === '/audit' && location.pathname === '/') || (link.to === '/audit' && location.pathname.startsWith('/audit-detail'))
-                    ? 'bg-primary-container text-on-primary-container'
-                    : 'text-on-surface-variant hover:bg-surface-variant'
+                  isActive || (link.to === '/audit' && location.pathname.startsWith('/audit-detail'))
+                    ? 'bg-primary text-white'
+                    : 'text-on-surface-variant hover:bg-primary hover:text-white'
                 }`}
               >
                 {({ isActive }) => (
@@ -67,7 +67,7 @@ function App() {
 
         {/* Bottom Section */}
         <div className="mt-auto pt-4 border-t border-outline-variant space-y-1">
-          <button className="w-full flex items-center justify-center gap-2 py-2 mb-4 bg-primary-container text-on-primary-container rounded-lg hover:bg-primary-hover transition-colors font-label-md cursor-pointer">
+          <button className="w-full flex items-center justify-center gap-2 py-2 mb-4 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-label-md cursor-pointer">
             Support
           </button>
           <a href="#settings" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant transition-all duration-200">
@@ -121,7 +121,7 @@ function App() {
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto">
           <Routes>
-            <Route path="/" element={<AuditLogPage />} />
+            <Route path="/" element={<div className="p-8"><h1 className="font-headline-lg text-primary">Dashboard</h1><p className="mt-4 text-text-secondary">Dashboard module is currently under construction.</p></div>} />
             <Route path="/audit" element={<AuditLogPage />} />
             <Route path="/audit-detail/:id" element={<AuditDetailPage />} />
             <Route path="/export" element={<ExportAuditLogsPage />} />

@@ -3,14 +3,30 @@ import { Link } from 'react-router-dom';
 export default function ComplianceReportsPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showTemplateSuccess, setShowTemplateSuccess] = useState(false);
 
   const today = new Date();
   
   const formatDate = (daysAgo: number) => {
     const d = new Date(today);
     d.setDate(d.getDate() - daysAgo);
-    return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+    
+    if (daysAgo !== 0) {
+      d.setHours(9 + (daysAgo % 8));
+      d.setMinutes((daysAgo * 13) % 60);
+    }
+
+    const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+    const timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    
+    return `${dateStr}, ${timeStr}`;
   };
+
+  const [savedReports, setSavedReports] = useState([
+    { name: 'Monthly FERPA Compliance', frequency: 'Monthly', date: formatDate(30) },
+    { name: 'Failed Authentication Attempts', frequency: 'Weekly', date: formatDate(7) },
+    { name: 'Grade Modifications Audit', frequency: 'On Demand', date: formatDate(45) }
+  ]);
 
   const handleDownload = (reportName: string) => {
     const blob = new Blob([`Mock Data for ${reportName}`], { type: 'text/csv' });
@@ -29,8 +45,14 @@ export default function ComplianceReportsPage() {
     setTimeout(() => {
       setIsGenerating(false);
       setShowSuccess(true);
+      setSavedReports(prev => [{ name: 'Custom Audit Report', frequency: 'On Demand', date: formatDate(0) }, ...prev]);
       setTimeout(() => setShowSuccess(false), 3000);
     }, 1500);
+  };
+
+  const handleSaveTemplate = () => {
+    setShowTemplateSuccess(true);
+    setTimeout(() => setShowTemplateSuccess(false), 3000);
   };
 
   return (
@@ -42,6 +64,14 @@ export default function ComplianceReportsPage() {
             check_circle
           </span>
           <span>Compliance report successfully generated!</span>
+        </div>
+      )}
+      {showTemplateSuccess && (
+        <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-blue-600 text-white px-4 py-3 rounded-xl shadow-lg animate-slide-up-fade font-label-md">
+          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
+            save
+          </span>
+          <span>Template configuration saved successfully!</span>
         </div>
       )}
 
@@ -105,14 +135,14 @@ export default function ComplianceReportsPage() {
               <button 
                 onClick={handleRunReport}
                 disabled={isGenerating}
-                className="bg-primary-container text-on-primary-container hover:bg-primary-hover px-6 py-2.5 rounded-lg font-label-md flex items-center gap-2 transition-colors disabled:opacity-50"
+                className="bg-primary text-white hover:bg-primary-hover px-6 py-2.5 rounded-lg font-label-md flex items-center gap-2 transition-colors disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-sm">
                   {isGenerating ? 'hourglass_empty' : 'play_arrow'}
                 </span>
                 {isGenerating ? 'Running...' : 'Run Report'}
               </button>
-              <button className="bg-surface text-on-surface border border-surface-card hover:bg-surface-container-low px-6 py-2.5 rounded-lg font-label-md flex items-center gap-2 transition-colors outline outline-1 outline-outline-variant">
+              <button onClick={handleSaveTemplate} className="bg-surface text-on-surface border border-surface-card hover:bg-surface-container-low px-6 py-2.5 rounded-lg font-label-md flex items-center gap-2 transition-colors outline outline-1 outline-outline-variant">
                 <span className="material-symbols-outlined text-sm">save</span>
                 Save as Template
               </button>
@@ -135,42 +165,20 @@ export default function ComplianceReportsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant">
-                  <tr className="hover:bg-surface-container-low transition-colors bg-surface">
-                    <td className="py-4 px-6 font-body-md text-on-surface font-medium">Monthly FERPA Compliance</td>
-                    <td className="py-4 px-6">
-                      <span className="bg-surface-container-high px-2.5 py-1 rounded-full text-xs font-label-sm text-on-surface-variant border border-outline-variant">Monthly</span>
-                    </td>
-                    <td className="py-4 px-6 font-body-sm text-text-secondary">{formatDate(30)}</td>
-                    <td className="py-4 px-6 text-right">
-                      <button onClick={() => handleDownload('Monthly FERPA Compliance')} className="text-primary hover:text-primary-hover p-1 cursor-pointer">
-                        <span className="material-symbols-outlined">download</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low transition-colors bg-surface">
-                    <td className="py-4 px-6 font-body-md text-on-surface font-medium">Failed Authentication Attempts</td>
-                    <td className="py-4 px-6">
-                      <span className="bg-surface-container-high px-2.5 py-1 rounded-full text-xs font-label-sm text-on-surface-variant border border-outline-variant">Weekly</span>
-                    </td>
-                    <td className="py-4 px-6 font-body-sm text-text-secondary">{formatDate(7)}</td>
-                    <td className="py-4 px-6 text-right">
-                      <button onClick={() => handleDownload('Failed Authentication Attempts')} className="text-primary hover:text-primary-hover p-1 cursor-pointer">
-                        <span className="material-symbols-outlined">download</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-surface-container-low transition-colors bg-surface">
-                    <td className="py-4 px-6 font-body-md text-on-surface font-medium">Grade Modifications Audit</td>
-                    <td className="py-4 px-6">
-                      <span className="bg-surface-container-high px-2.5 py-1 rounded-full text-xs font-label-sm text-on-surface-variant border border-outline-variant">On Demand</span>
-                    </td>
-                    <td className="py-4 px-6 font-body-sm text-text-secondary">{formatDate(45)}</td>
-                    <td className="py-4 px-6 text-right">
-                      <button onClick={() => handleDownload('Grade Modifications Audit')} className="text-primary hover:text-primary-hover p-1 cursor-pointer">
-                        <span className="material-symbols-outlined">download</span>
-                      </button>
-                    </td>
-                  </tr>
+                  {savedReports.map((report, idx) => (
+                    <tr key={idx} className="hover:bg-surface-container-low transition-colors bg-surface">
+                      <td className="py-4 px-6 font-body-md text-on-surface font-medium">{report.name}</td>
+                      <td className="py-4 px-6">
+                        <span className="bg-surface-container-high px-2.5 py-1 rounded-full text-xs font-label-sm text-on-surface-variant border border-outline-variant">{report.frequency}</span>
+                      </td>
+                      <td className="py-4 px-6 font-body-sm text-text-secondary">{report.date}</td>
+                      <td className="py-4 px-6 text-right">
+                        <button onClick={() => handleDownload(report.name)} className="text-primary hover:text-primary-hover p-1 cursor-pointer">
+                          <span className="material-symbols-outlined">download</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -217,10 +225,10 @@ export default function ComplianceReportsPage() {
             </div>
 
             <div className="mt-8 pt-4 border-t border-outline-variant">
-              <a href="#" className="text-primary hover:text-primary-hover font-label-md flex items-center justify-center gap-1">
+              <Link to="/activity" className="text-primary hover:text-primary-hover font-label-md flex items-center justify-center gap-1">
                 View All History
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

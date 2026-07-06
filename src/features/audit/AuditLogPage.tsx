@@ -105,6 +105,33 @@ export const AuditLogPage: React.FC = () => {
             Reports
           </button>
 
+          {/* Hidden File Input for Import */}
+          <input
+            type="file"
+            id="import-file-upload"
+            className="hidden"
+            accept=".csv,.xlsx,.json"
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                // You can add a success toast here later if needed
+                console.log("File selected for import:", e.target.files[0].name);
+                // Reset input so the same file can be selected again
+                e.target.value = '';
+              }
+            }}
+          />
+
+          <button
+            title="Supported formats: CSV, XLSX, JSON"
+            onClick={() => document.getElementById('import-file-upload')?.click()}
+            className="flex items-center gap-2 px-5 py-2.5 bg-primary-container text-on-primary-container rounded-lg font-label-md hover:bg-primary-hover hover:text-on-primary transition-colors cursor-pointer"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
+              upload
+            </span>
+            Advanced Import
+          </button>
+          
           <button
             onClick={handleExportPDF}
             className="flex items-center gap-2 px-5 py-2.5 bg-primary-container text-on-primary-container rounded-lg font-label-md hover:bg-primary-hover hover:text-on-primary transition-colors cursor-pointer"

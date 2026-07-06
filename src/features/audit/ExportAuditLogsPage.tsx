@@ -108,8 +108,8 @@ export default function ExportAuditLogsPage() {
                         onClick={() => toggleAction(action)}
                         className={`px-4 py-1.5 rounded-full font-label-md transition-colors ${
                           isSelected 
-                            ? 'bg-primary-container text-on-primary-container border border-primary' 
-                            : 'bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-surface-container-high'
+                            ? 'bg-primary text-white border border-primary' 
+                            : 'bg-surface-container-low text-on-surface-variant border border-outline-variant hover:bg-primary hover:text-white'
                         }`}
                       >
                         {action}
@@ -142,10 +142,10 @@ export default function ExportAuditLogsPage() {
                   ].map(format => (
                     <label 
                       key={format.id} 
-                      className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer border transition-colors ${
+                      className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer border transition-colors group ${
                         fileFormat === format.id 
-                          ? 'border-primary bg-primary-container bg-opacity-10' 
-                          : 'border-outline-variant hover:bg-surface-container-low'
+                          ? 'border-primary bg-primary text-white' 
+                          : 'border-outline-variant hover:bg-primary text-on-surface'
                       }`}
                     >
                       <input 
@@ -157,11 +157,11 @@ export default function ExportAuditLogsPage() {
                         className="mt-1 text-primary focus:ring-primary"
                       />
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 font-label-md text-on-surface">
+                        <div className={`flex items-center gap-2 font-label-md ${fileFormat === format.id ? 'text-white' : 'text-on-surface group-hover:text-white'}`}>
                           <span className="material-symbols-outlined text-sm">{format.icon}</span>
                           {format.label}
                         </div>
-                        <div className="text-sm text-text-secondary">{format.desc}</div>
+                        <div className={`text-sm ${fileFormat === format.id ? 'text-white/80' : 'text-text-secondary group-hover:text-white/80'}`}>{format.desc}</div>
                       </div>
                     </label>
                   ))}

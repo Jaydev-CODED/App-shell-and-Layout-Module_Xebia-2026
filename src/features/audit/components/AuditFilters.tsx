@@ -124,9 +124,9 @@ export const AuditFilters: React.FC<AuditFiltersProps> = ({
         className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-high text-on-background rounded-lg border border-surface-card hover:bg-surface-variant transition-colors font-label-md cursor-pointer"
       >
         <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-          filter_alt
+          clear_all
         </span>
-        Filter
+        Clear Filters
       </button>
     </div>
   );
