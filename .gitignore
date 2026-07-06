@@ -39,3 +39,6 @@ dist-ssr/
 # Testing
 /frontend/coverage
 /backend/coverage
+
+# Downloads / Static Generated Files
+/backend/public/downloads/

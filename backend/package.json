@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "prisma:generate": "prisma generate",
@@ -16,10 +16,10 @@
   "dependencies": {
     "@prisma/client": "^5.11.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
     "bullmq": "^5.5.0",
     "cors": "^2.8.5",
     "csv-stringify": "^6.4.6",
+    "dotenv": "^16.4.5",
     "express": "^4.19.0",
     "express-rate-limit": "^7.2.0",
     "helmet": "^7.1.0",
@@ -39,6 +39,7 @@
     "prisma": "^5.11.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.23.0",
     "typescript": "^5.4.0"
   }
 }
