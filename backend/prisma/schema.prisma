@@ -1,0 +1,76 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  MEMBER
+  ADMIN
+}
+
+enum ProjectStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  IN_REVIEW
+  ACTIVE_CODING
+  COMPLETED
+}
+
+enum ReportStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id           String             @id @default(uuid())
+  email        String             @unique
+  passwordHash String
+  name         String
+  role         Role               @default(MEMBER)
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  projects     Project[]          @relation("ProjectOwnership")
+  reports      Report[]
+  settings     WorkspaceSettings?
+}
+
+model Project {
+  id        String        @id @default(uuid())
+  name      String
+  ownerId   String
+  owner     User          @relation("ProjectOwnership", fields: [ownerId], references: [id], onDelete: Cascade)
+  status    ProjectStatus @default(NOT_STARTED)
+  progress  Int           @default(0)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Report {
+  id          String       @id @default(uuid())
+  title       String
+  type        String       // e.g. "Telemetry Summary", "Security Audits"
+  status      ReportStatus @default(PENDING)
+  fileUrl     String?      // S3 or local storage URL for downloaded report
+  fileSizeKb  Int?
+  requestedBy String
+  requester   User         @relation(fields: [requestedBy], references: [id], onDelete: Cascade)
+  createdAt   DateTime     @default(now())
+  completedAt DateTime?
+}
+
+model WorkspaceSettings {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  routerTransitions Boolean  @default(true)
+  routerTelemetry   Boolean  @default(true)
+  routerCache       Boolean  @default(false)
+  updatedAt         DateTime @updatedAt
+}

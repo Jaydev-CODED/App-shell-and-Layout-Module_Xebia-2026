@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6C1D5F;
+  --color-primaryDark: #4A1E47;
+  --color-primary-dark: #4A1E47;
+  --color-secondary: #84117C;
+  --color-success: #01AC9F;
+  --color-warning: #FF6200;
+  --color-white: #FFFFFF;
+  --color-gray-50: #F7F8FC;
+  --color-gray-100: #DADCEA;
+  --color-gray-200: #DEDEDE;
+  --color-gray-600: #5A5A5A;
+  --color-gray-900: #000000;
+}
+
+@layer base {
+  body {
+    @apply h-full text-gray-600 bg-gray-50 font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 font-bold;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DADCEA;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #DEDEDE;
+}
+
+/* Custom fade animations for page transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 250ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
