@@ -4,7 +4,7 @@ import { useAuditLogs } from './api/auditQueries';
 import AuditFilters from './components/AuditFilters';
 import AuditLogTable from './components/AuditLogTable';
 import type { AuditLogFilters } from './types';
-import { auditApi } from './api/auditApi';
+import { auditApi } from '../../services/auditApi';
 
 export const AuditLogPage: React.FC = () => {
   const navigate = useNavigate();

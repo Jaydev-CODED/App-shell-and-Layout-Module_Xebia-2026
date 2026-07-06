@@ -1,9 +1,4 @@
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
-import AuditLogPage from './features/audit/AuditLogPage';
-import AuditDetailPage from './features/audit/AuditDetailPage';
-import ExportAuditLogsPage from './features/audit/ExportAuditLogsPage';
-import ComplianceReportsPage from './features/audit/ComplianceReportsPage';
-import ActivityTimelinePage from './features/audit/ActivityTimelinePage';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const sidebarLinks = [
   { to: '/', label: 'Dashboard', icon: 'dashboard' },
@@ -17,7 +12,7 @@ const sidebarLinks = [
   { to: '/activity', label: 'Activity Timeline', icon: 'history' },
 ];
 
-function App() {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
   return (
@@ -120,18 +115,9 @@ function App() {
 
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto">
-          <Routes>
-            <Route path="/" element={<div className="p-8"><h1 className="font-headline-lg text-primary">Dashboard</h1><p className="mt-4 text-text-secondary">Dashboard module is currently under construction.</p></div>} />
-            <Route path="/audit" element={<AuditLogPage />} />
-            <Route path="/audit-detail/:id" element={<AuditDetailPage />} />
-            <Route path="/export" element={<ExportAuditLogsPage />} />
-            <Route path="/compliance" element={<ComplianceReportsPage />} />
-            <Route path="/activity" element={<ActivityTimelinePage />} />
-          </Routes>
+          {children}
         </div>
       </main>
     </div>
   );
 }
-
-export default App;

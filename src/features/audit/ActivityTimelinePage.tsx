@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuditLogs } from './api/auditQueries';
 import type { AuditLog } from './types';
 
@@ -25,7 +25,7 @@ export default function ActivityTimelinePage() {
   // Group logs by date
   const groupedLogs: Record<string, AuditLog[]> = {};
   
-  logs.forEach(log => {
+  logs.forEach((log: AuditLog) => {
     const d = new Date(log.timestamp);
     const today = new Date();
     const yesterday = new Date(today);

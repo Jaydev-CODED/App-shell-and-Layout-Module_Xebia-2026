@@ -1,4 +1,4 @@
-import type { AuditLog, AuditLogFilters, AuditLogResponse, AuditAction } from '../types';
+import type { AuditLog, AuditLogFilters, AuditLogResponse, AuditAction } from '../features/audit/types';
 
 // ==========================================
 // MOCK DATA GENERATOR (For instant local demo)
