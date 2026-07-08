@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components -- Router configuration file: lazy page imports and router export coexist by design (React Router v6 pattern) */
 import { lazy, Suspense, type ReactNode } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { DashboardLayout } from '../layouts/DashboardLayout'
@@ -13,6 +12,12 @@ const FeatureFlagsPage = lazy(() => import('../features/configuration/pages/Feat
 const BrandingPage = lazy(() => import('../features/configuration/pages/BrandingPage'))
 const NotificationSettingsPage = lazy(() => import('../features/configuration/pages/NotificationSettingsPage'))
 const SystemPreferencesPage = lazy(() => import('../features/configuration/pages/SystemPreferencesPage'))
+
+import AuditLogPage from '../features/audit/AuditLogPage';
+import AuditDetailPage from '../features/audit/AuditDetailPage';
+import ExportAuditLogsPage from '../features/audit/ExportAuditLogsPage';
+import ComplianceReportsPage from '../features/audit/ComplianceReportsPage';
+import ActivityTimelinePage from '../features/audit/ActivityTimelinePage';
 
 function PageLoader({ children }: { children: ReactNode }) {
   return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
@@ -33,6 +38,11 @@ export const router = createBrowserRouter([
               </PageLoader>
             ),
           },
+          { path: 'audit', element: <AuditLogPage /> },
+          { path: 'audit-detail/:id', element: <AuditDetailPage /> },
+          { path: 'export', element: <ExportAuditLogsPage /> },
+          { path: 'compliance', element: <ComplianceReportsPage /> },
+          { path: 'activity', element: <ActivityTimelinePage /> },
           {
             path: 'settings',
             element: <SidebarLayout />,

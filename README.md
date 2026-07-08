@@ -1,75 +1,41 @@
-# React + TypeScript + Vite
+# UMS Portal: Audit Logs (Stitch Velvet Edition)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React + TypeScript application built with Vite and Tailwind CSS v4, featuring the "Stitch Velvet" design system.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+If you have just cloned this repository to your laptop, follow these instructions to get the app running locally!
 
-## React Compiler
+### Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+You need to have **Node.js** installed on your computer. 
+If you don't have it, download and install it from here: [https://nodejs.org/en](https://nodejs.org/en) (the LTS version is recommended).
 
-## Expanding the ESLint configuration
+### Installation & Running
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Open your terminal** and navigate into the project folder:
+   ```bash
+   cd audit-log-portal
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Install the dependencies**:
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **View the app**:
+   Open your browser and navigate to the URL provided in your terminal (usually `http://localhost:5173/`).
 
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+### Features Included
+- **Main Audit Trail:** Filterable mock data table with pagination.
+- **Detailed Event View:** Deep dive into specific events with side-by-side data diffs.
+- **Export Logs:** Configuration UI for generating CSV/PDF/JSON exports.
+- **Compliance Reports:** Scheduled and on-demand report mockups.
+- **Activity Timeline:** Chronological timeline view of entity-specific activities.
