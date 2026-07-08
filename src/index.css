@@ -1,1 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap');
+@import "tailwindcss";
 @import "./styles/globals.css";
+
+/* ── Focus ring helper ── */
+.focus-velvet:focus {
+  outline: none;
+  border-color: var(--color-primary-container);
+  box-shadow: 0 0 0 2px rgba(92, 29, 103, 0.18);
+}
+
+/* ── Smooth transitions globally ── */
+button,
+a,
+input,
+select,
+textarea {
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
