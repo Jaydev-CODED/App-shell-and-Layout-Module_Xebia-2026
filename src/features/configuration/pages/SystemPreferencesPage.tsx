@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/incompatible-library -- watch() from react-hook-form is intentionally used for reactive date format selection; React Compiler memoization warning is a known false positive for RHF watch() */
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Globe, RotateCcw } from 'lucide-react'
-import { ConfigSelect } from '../../../shared/ui/ConfigSelect'
-import { FormSection } from '../../../shared/ui/FormSection'
-import { PageHeader } from '../../../shared/ui/PageHeader'
-import { SaveButton } from '../../../shared/ui/SaveButton'
-import { Skeleton } from '../../../shared/ui/Skeleton'
-import { useToast } from '../../../shared/ui/ToastProvider'
+import { ConfigSelect } from '../../../components/ui/ConfigSelect'
+import { FormSection } from '../../../components/ui/FormSection'
+import { PageHeader } from '../../../components/ui/PageHeader'
+import { SaveButton } from '../../../components/ui/SaveButton'
+import { Skeleton } from '../../../components/ui/Skeleton'
+import { useToast } from '../../../components/ui/ToastProvider'
 import {
   systemPreferencesSchema,
   type SystemPreferencesFormValues,
@@ -65,8 +66,7 @@ export default function SystemPreferencesPage() {
     return () => window.clearTimeout(timer)
   }, [])
 
-  const onSubmit = (values: SystemPreferencesFormValues) => {
-    console.info('System preferences saved', values)
+  const onSubmit = () => {
     pushToast('System preferences saved successfully.')
   }
 

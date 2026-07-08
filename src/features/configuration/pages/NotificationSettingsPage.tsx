@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/incompatible-library -- watch() from react-hook-form is intentionally used for reactive channel display; React Compiler memoization warning is a known false positive for RHF watch() */
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Bell, Mail, MessageSquare, RotateCcw, Smartphone } from 'lucide-react'
-import { FormSection } from '../../../shared/ui/FormSection'
-import { PageHeader } from '../../../shared/ui/PageHeader'
-import { SaveButton } from '../../../shared/ui/SaveButton'
-import { Skeleton } from '../../../shared/ui/Skeleton'
-import { useToast } from '../../../shared/ui/ToastProvider'
-import { ConfigInput } from '../../../shared/ui/ConfigInput'
+import { FormSection } from '../../../components/ui/FormSection'
+import { PageHeader } from '../../../components/ui/PageHeader'
+import { SaveButton } from '../../../components/ui/SaveButton'
+import { Skeleton } from '../../../components/ui/Skeleton'
+import { useToast } from '../../../components/ui/ToastProvider'
+import { ConfigInput } from '../../../components/ui/ConfigInput'
 import {
   notificationSettingsSchema,
   type NotificationSettingsFormValues,
@@ -98,8 +99,7 @@ export default function NotificationSettingsPage() {
     return () => window.clearTimeout(timer)
   }, [])
 
-  const onSubmit = (values: NotificationSettingsFormValues) => {
-    console.info('Notification settings saved', values)
+  const onSubmit = () => {
     pushToast('Notification settings saved successfully.')
   }
 

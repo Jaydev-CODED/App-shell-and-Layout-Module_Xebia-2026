@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- Router configuration file: lazy page imports and router export coexist by design (React Router v6 pattern) */
 import { lazy, Suspense, type ReactNode } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { DashboardLayout } from '../layouts/DashboardLayout'

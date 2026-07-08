@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { ToggleLeft } from 'lucide-react'
-import { EmptyState } from '../../../shared/ui/EmptyState'
-import { PageHeader } from '../../../shared/ui/PageHeader'
-import { Skeleton } from '../../../shared/ui/Skeleton'
-import { useToast } from '../../../shared/ui/ToastProvider'
+import { EmptyState } from '../../../components/ui/EmptyState'
+import { PageHeader } from '../../../components/ui/PageHeader'
+import { Skeleton } from '../../../components/ui/Skeleton'
+import { useToast } from '../../../components/ui/ToastProvider'
 
 type ModuleFlag = {
   name: string

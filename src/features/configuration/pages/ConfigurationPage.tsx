@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { BookOpenCheck, CalendarCheck2, CheckCircle2, Download, FileText, Palette, ShieldCheck, Sparkles, ToggleRight, type LucideIcon } from 'lucide-react'
 import { Compass } from 'lucide-react'
-import { EmptyState } from '../../../shared/ui/EmptyState'
-import { FormSection } from '../../../shared/ui/FormSection'
-import { PageHeader } from '../../../shared/ui/PageHeader'
-import { Skeleton } from '../../../shared/ui/Skeleton'
-import { useToast } from '../../../shared/ui/ToastProvider'
+import { EmptyState } from '../../../components/ui/EmptyState'
+import { FormSection } from '../../../components/ui/FormSection'
+import { PageHeader } from '../../../components/ui/PageHeader'
+import { Skeleton } from '../../../components/ui/Skeleton'
+import { useToast } from '../../../components/ui/ToastProvider'
 
 type ConfigCardItem = {
   title: string
