@@ -30,6 +30,8 @@ textarea {
   --color-on-primary-container: #d289d9;
   --color-primary-hover: #4A164F;
   --color-primary-fixed-dim: #f8acff;
+  --color-primaryDark: #43004f;
+  --color-primary-dark: #43004f;
 
   --color-secondary: #9a2e9d;
   --color-on-secondary: #ffffff;

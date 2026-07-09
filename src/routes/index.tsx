@@ -4,7 +4,11 @@ import { DashboardLayout } from '../layouts/DashboardLayout'
 import { ProtectedLayout } from '../layouts/ProtectedLayout'
 import { SidebarLayout } from '../layouts/SidebarLayout'
 
-const DashboardPage = lazy(() => import('../features/configuration/pages/DashboardPage'))
+const Dashboard = lazy(() => import('../features/dashboard/Dashboard'))
+const Analytics = lazy(() => import('../features/analytics/Analytics'))
+const Projects = lazy(() => import('../features/projects/Projects'))
+const Reports = lazy(() => import('../features/reports/Reports'))
+
 const ConfigurationPage = lazy(() => import('../features/configuration/pages/ConfigurationPage'))
 const AcademicRulesPage = lazy(() => import('../features/configuration/pages/AcademicRulesPage'))
 const AttendanceRulesPage = lazy(() => import('../features/configuration/pages/AttendanceRulesPage'))
@@ -34,7 +38,31 @@ export const router = createBrowserRouter([
             path: '/',
             element: (
               <PageLoader>
-                <DashboardPage />
+                <Dashboard />
+              </PageLoader>
+            ),
+          },
+          {
+            path: 'analytics',
+            element: (
+              <PageLoader>
+                <Analytics />
+              </PageLoader>
+            ),
+          },
+          {
+            path: 'projects',
+            element: (
+              <PageLoader>
+                <Projects />
+              </PageLoader>
+            ),
+          },
+          {
+            path: 'reports',
+            element: (
+              <PageLoader>
+                <Reports onNotify={() => {}} />
               </PageLoader>
             ),
           },
