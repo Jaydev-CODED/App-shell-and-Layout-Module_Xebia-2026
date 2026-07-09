@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { reportsService } from '../services/api';
+import { reportsService } from '../../services/api';
 
 export default function Reports({ onNotify }) {
   const [selectedReport, setSelectedReport] = useState('Telemetry Summary');

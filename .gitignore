@@ -42,3 +42,6 @@ dist-ssr/
 
 # Downloads / Static Generated Files
 /backend/public/downloads/
+
+# Local workspace subdirectories
+/university-dashboard-frontend/

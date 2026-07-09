@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IndianRupee, Users, CheckSquare, TrendingUp } from 'lucide-react';
-import { statsService, socketService } from '../services/api';
+import { statsService, socketService } from '../../services/api';
 
 export default function Dashboard({ onNotify }) {
   const [clickCount, setClickCount] = useState(0);

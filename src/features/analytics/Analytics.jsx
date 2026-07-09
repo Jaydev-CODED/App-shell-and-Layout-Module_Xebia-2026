@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { statsService, socketService } from '../services/api';
+import { statsService, socketService } from '../../services/api';
 
 export default function Analytics() {
   const [chartData, setChartData] = useState([120, 150, 95, 140, 110, 190, 160, 210, 185, 230, 200, 250]);

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
+import Header from '../layouts/Header';
+import Sidebar from '../layouts/Sidebar';
+import Footer from '../layouts/Footer';
 
 // Pages
-import Dashboard from './pages/Dashboard';
-import Analytics from './pages/Analytics';
-import Projects from './pages/Projects';
-import Reports from './pages/Reports';
-import Settings from './pages/Settings';
+import Dashboard from '../features/dashboard/Dashboard';
+import Analytics from '../features/analytics/Analytics';
+import Projects from '../features/projects/Projects';
+import Reports from '../features/reports/Reports';
+import Settings from '../features/settings/Settings';
 
-import { authService } from './services/api';
+import { authService } from '../services/api';
 
 export default function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#/dashboard');

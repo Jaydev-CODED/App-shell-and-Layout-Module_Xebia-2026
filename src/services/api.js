@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
-const API_BASE = 'http://localhost:5000/api/v1';
-const WS_BASE = 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
+const WS_BASE = import.meta.env.VITE_WS_BASE_URL || 'http://localhost:5000';
 
 // In-Memory Token Reference
 let token = localStorage.getItem('auth_token') || '';

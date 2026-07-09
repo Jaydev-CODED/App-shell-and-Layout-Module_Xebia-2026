@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
+import Header from '../layouts/Header';
+import Sidebar from '../layouts/Sidebar';
+import Footer from '../layouts/Footer';
 
 // Mock matchMedia for jsdom compatibility
 Object.defineProperty(window, 'matchMedia', {

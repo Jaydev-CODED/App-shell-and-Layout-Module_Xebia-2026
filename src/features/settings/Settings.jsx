@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { settingsService } from '../services/api';
+import { settingsService } from '../../services/api';
 
 export default function Settings() {
   const [transitions, setTransitions] = useState(true);

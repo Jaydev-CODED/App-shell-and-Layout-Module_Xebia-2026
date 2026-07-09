@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
-import { projectsService } from '../services/api';
+import { projectsService } from '../../services/api';
 
 export default function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
