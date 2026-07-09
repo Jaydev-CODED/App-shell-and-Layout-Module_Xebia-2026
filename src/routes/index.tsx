@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             path: '/',
             element: (
               <PageLoader>
-                <Dashboard />
+                <Dashboard onNotify={() => {}} />
               </PageLoader>
             ),
           },
